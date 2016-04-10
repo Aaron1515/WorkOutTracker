@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<ul>
+<li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, method: :delete %>
+</li>
+</ul>
 <%= yield %>
 
 </body>
