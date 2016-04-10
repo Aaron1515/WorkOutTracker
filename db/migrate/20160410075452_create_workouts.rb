@@ -1,9 +1,10 @@
-class CreateDailyWorkouts < ActiveRecord::Migration
+class CreateWorkouts < ActiveRecord::Migration
   def change
-    create_table :daily_workouts do |t|
+    create_table :workouts do |t|
       t.string :name
       t.integer :reps
       t.integer :sets
+      t.integer :weight
       t.boolean :completed
       t.integer :user_id
 

@@ -1,1 +1,15 @@
-<% binding.pry %>
+Congratulations <strong><%= @user.name %></strong> For Making It This Far!<br>
+
+Here is Your Progress:<br><br>
+
+Monday:<br>
+
+<% @workouts.each do |workout| %><br>
+
+  Workout: <%= workout.name %><br>
+  Reps:<%= workout.reps %><br>
+  Sets:<%= workout.sets %><br>
+  Weight:<%= workout.weight %><br>
+
+<% end %>
+
