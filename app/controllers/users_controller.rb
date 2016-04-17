@@ -13,14 +13,16 @@ class UsersController < ApplicationController
 
   def create
     if @user = User.new(user_params)
+      # binding.pry
       if @user.save
-        session[:user_id] = @user.id + @user.name
+        # binding.pry
+        session[:user_id] = @user.id
         redirect_to @user
       else
-        redirect "/users/new"
+        redirect_to new_user_path
       end
     else
-      redirect "/users/new"
+      redirect_to new_user_path
     end
   end
 
