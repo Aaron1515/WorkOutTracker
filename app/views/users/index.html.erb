@@ -1,0 +1,12 @@
+
+<% if @user.admin == true %>
+  <% @users.each do |user| %>
+  <ul>
+    <li><%= user.name %> | <%= user.email %>  <a href="">Detail</a> | <a href="">Edit</a> | <a href="">Delete</a></li><br>
+  </ul>
+  <% end %>
+
+
+<% else %>
+  Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
+<% end %>

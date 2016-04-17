@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
+    # binding.pry
+    if session[:user_id]
+      @user=User.find_by(id: session[:user_id])
+      if @user.admin == true
+        @users = User.where(admin: false)
+      else
+        redirect_to new_user_path
+      end
+    else
+      redirect_to new_user_path
+    end
   end
 
   def show
