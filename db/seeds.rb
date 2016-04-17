@@ -1,4 +1,4 @@
-eddy = User.create(name: "Eddy", email: "eddy@eddy.com", password: "password")
+eddy = User.create(name: "Eddy", email: "eddy@eddy.com", password: "password", admin: true)
 # eddy = User.find(1)
 
 
