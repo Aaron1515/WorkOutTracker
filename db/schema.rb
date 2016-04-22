@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20160410075452) do
     t.integer  "reps"
     t.integer  "sets"
     t.integer  "weight"
-    t.boolean  "completed"
+    t.boolean  "completed",  default: false
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end

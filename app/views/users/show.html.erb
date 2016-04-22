@@ -2,7 +2,7 @@
 
   <% if @admin && @admin.admin == true %>
     <h1><%= @user.name.capitalize %>'s Progress</h1><h3>(<%= @user.email %>)</h3>
-    <a href="">Create New Workout</a>
+    <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
       <table class="table table-striped">
         <tr>
           <th>Date</th>
@@ -57,7 +57,7 @@
   <% @workouts.each do |workout| %><br>
     <% if workout.completed == false %>
         <li class="list-group-item list-group-item-warning"><strong><%= workout.name %></strong>
-        <input type="submit" value="Complete" class="btn-xs btn-success pull-right">
+        <input type="submit" value="Complete" class="btn-xs btn-success pull-right" name="<%= workout.id %>" id="workout<%= workout.id %>">
       <% else %>
         <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
       <% end %>
