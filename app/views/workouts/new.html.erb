@@ -2,22 +2,22 @@ Add a workout for <%= @user.name.capitalize %>
 
 <%= form_for [@user, @workout] do |f| %>
 
-    <%= f.fields_for :workout do |workouts_form| %>
     
-        <%= workouts_form.label :name %>
-        <%= workouts_form.text_field :name %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
  
-        <%= workouts_form.label :reps %>
-        <%= workouts_form.text_field :reps %>
+        <%= f.label :reps %>
+        <%= f.text_field :reps %>
 
-        <%= workouts_form.label :sets %>
-        <%= workouts_form.text_field :sets %>
+        <%= f.label :sets %>
+        <%= f.text_field :sets %>
 
-        <%= workouts_form.label :weight %>
-        <%= workouts_form.text_field :weight %>
+        <%= f.label :weight %>
+        <%= f.text_field :weight %>
        
         <%= f.submit "Create" %>
    
-    <% end %>
+
 
 <% end %>
+
