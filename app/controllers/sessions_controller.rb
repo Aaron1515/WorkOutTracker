@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def new
+    @current_user = current_user
   end
 
   def create
@@ -34,4 +35,7 @@ class SessionsController < ApplicationController
     params.require(:user).permit(:email, :password)
   end
 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
 end
