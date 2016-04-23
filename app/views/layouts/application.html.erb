@@ -9,6 +9,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -37,7 +38,7 @@
             <li><a href="/">Home</a></li>
             <!-- If user logged in and there is a session id then show below -->
             <% if session[:user_id] %>
-              
+
 
               <li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, method: :delete %></li>
 
@@ -45,14 +46,14 @@
                 <li><a href="/users">Clients</a></li>
               <% end %>
               <li><a href="/users/<%= session[:user_id] %>"><span class="glyphicon glyphicon-user"></span>  <%= @current_user.name %></a></li>
-            
+
             <% else %>
 
               <li><a href="/users/new">Register</a></li>
               <li><a href="/">Login</a></li>
 
             <% end %>
-          
+
           </ul>
 
         </div><!--/.nav-collapse -->

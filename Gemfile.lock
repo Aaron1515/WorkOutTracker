@@ -124,6 +124,11 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
+<<<<<<< HEAD
+=======
+    rdoc-data (4.1.0)
+      rdoc (~> 4.0)
+>>>>>>> 82078683d6675defff075f38eb173647add2cc95
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -167,6 +172,10 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.6)
   rails_12factor
+<<<<<<< HEAD
+=======
+  rdoc-data
+>>>>>>> 82078683d6675defff075f38eb173647add2cc95
   sdoc (~> 0.4.0)
   spring
   thin
