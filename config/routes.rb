@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users do
-    resources :daily_workout
+    resources :workouts
   end
   get "/" => "sessions#new"
   post "/" => "sessions#create"

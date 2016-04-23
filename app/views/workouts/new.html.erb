@@ -1,0 +1,23 @@
+Add a workout for <%= @user.name.capitalize %>
+
+<%= form_for [@user, @workout] do |f| %>
+
+    
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+ 
+        <%= f.label :reps %>
+        <%= f.text_field :reps %>
+
+        <%= f.label :sets %>
+        <%= f.text_field :sets %>
+
+        <%= f.label :weight %>
+        <%= f.text_field :weight %>
+       
+        <%= f.submit "Create" %>
+   
+
+
+<% end %>
+
