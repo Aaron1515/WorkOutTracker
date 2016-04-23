@@ -81,8 +81,8 @@
     <div id="glist">
   <% @workouts.each do |workout| %><br>
     <% if workout.completed == false %>
-        <li class="list-group-item list-group-item-warning"><strong><%= workout.name %></strong>
-        <input type="submit" value="Complete" class="btn-xs btn-success pull-right" name="<%= workout.id %>" id="workout<%= workout.id %>">
+        <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
+        <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
       <% else %>
         <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
       <% end %>
