@@ -29,6 +29,7 @@
       <%= link_to 'Back', users_path %>
   <% else %>
 
+
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
 
     Here is Your Progress:</center><br><br>
@@ -36,9 +37,11 @@
       <center>
         <!-- Single button -->
     <div class="btn-group">
+      <button id="show-goals" type="button" class="btn btn-default">
+        Goals</button>
       <button type="button" class="btn btn-default">
         Photos</button>
-      <button type="button" class="btn btn-default">Measurements</button>
+      <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Day <span class="caret"></span>
       </button>
@@ -54,10 +57,32 @@
     </div>
   </center><br>
 
+
+    <div id="mlist">
+      <table id="measurement" class="table table-striped">
+        <tr>
+          <th>Measurements:</th>
+        </tr>
+        <tr>
+        <th>Body Part</th>
+        <th>Inches</th>
+        </tr>
+        <tr><td>Waist:</td><td>50</td></tr>
+        <tr><td>Left Arm:</td><td>50</td></tr>
+        <tr><td>Right Arm:</td><td>50</td></tr>
+        <tr><td>Left Thigh:</td><td>50</td></tr>
+        <tr><td>Right Thigh:</td><td>50</td></tr>
+        <tr><td>Neck:</td><td>50</td></tr>
+        <tr><td>Left Calf:</td><td>50</td></tr>
+        <tr><td>Right Calf:</td><td>50</td></tr>
+      </table>
+    </div>
+
+    <div id="glist">
   <% @workouts.each do |workout| %><br>
     <% if workout.completed == false %>
-        <li class="list-group-item list-group-item-warning"><strong><%= workout.name %></strong>
-        <input type="submit" value="Complete" class="btn-xs btn-success pull-right" name="<%= workout.id %>" id="workout<%= workout.id %>">
+        <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
+        <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
       <% else %>
         <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
       <% end %>
@@ -68,8 +93,10 @@
     <li class="list-group-item"><span class="badge"><%= workout.weight %></span></span>Weight:</li>
     <% end %>
   <% end %>
+</div>
 <% else %>
 
   Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
+
 

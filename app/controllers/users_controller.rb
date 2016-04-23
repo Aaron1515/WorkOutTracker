@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    @current_user = current_user
+    @user = User.find_by(id: session[:user_id])
     if session[:user_id]
       @admin = User.find_by(id: session[:user_id])
       if @admin.admin == true
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     # binding.pry
+    @current_user = current_user
     @user = User.find_by(id: params[:id])
     user = User.find_by(id: session[:user_id])
     if user.admin == true
@@ -73,6 +76,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
 end
