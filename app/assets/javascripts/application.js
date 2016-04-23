@@ -15,3 +15,19 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+$(document).ready(function() {
+    $('#show-measurements').on('click', showMeasurements);
+    $('#show-goals').on('click', showGoals);
+});
+
+var showMeasurements = function(event){
+  event.preventDefault();
+  console.log("Meas");
+  $('#mlist').toggle();
+};
+
+var showGoals = function(event){
+  event.preventDefault();
+  console.log("Goal");
+  $('#glist').toggle();
+};
