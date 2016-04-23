@@ -6,7 +6,7 @@ class CreateWorkouts < ActiveRecord::Migration
       t.integer :sets
       t.integer :weight
       t.boolean :completed, default: false
-      t.integer :user_id
+      t.integer :day_id
 
       t.timestamps null: false
     end
