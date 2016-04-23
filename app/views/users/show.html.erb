@@ -1,19 +1,35 @@
 <% if session[:user_id] %>
 
-  <% if @user.admin == true %>
+  <% if @admin && @admin.admin == true %>
+    <h1><%= @user.name.capitalize %>'s Progress</h1><h3>(<%= @user.email %>)</h3>
+    <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
+      <table class="table table-striped">
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Name</th>
+          <th>Reps</th>
+          <th>Sets</th>
+          <th>Weight</th>
+          <th>Completed</th>
+        </tr>
+        <% @workouts.each do |workout| %>
+        <tr>
+          <td><%= workout.updated_at.strftime("%b. %d %Y") %></td>
+          <td><%= workout.updated_at.strftime("%H:%M") %></td>
 
-
-
-
-
-
-
-
-
-
-
-
+          <td><%= workout.name %></td>
+          <td><%= workout.reps %></td>
+          <td><%= workout.sets %></td>
+          <td><%= workout.weight %></td>
+          <td><%= workout.completed ? "Yes" : "No" %></td>
+        </tr>
+        <% end %>
+      </table>
+      <%= link_to 'Back', users_path %>
   <% else %>
+
+
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
 
     Here is Your Progress:</center><br><br>
@@ -21,9 +37,11 @@
       <center>
         <!-- Single button -->
     <div class="btn-group">
+      <button id="show-goals" type="button" class="btn btn-default">
+        Goals</button>
       <button type="button" class="btn btn-default">
         Photos</button>
-      <button type="button" class="btn btn-default">Measurements</button>
+      <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Day <span class="caret"></span>
       </button>
@@ -39,15 +57,46 @@
     </div>
   </center><br>
 
+
+    <div id="mlist">
+      <table id="measurement" class="table table-striped">
+        <tr>
+          <th>Measurements:</th>
+        </tr>
+        <tr>
+        <th>Body Part</th>
+        <th>Inches</th>
+        </tr>
+        <tr><td>Waist:</td><td>50</td></tr>
+        <tr><td>Left Arm:</td><td>50</td></tr>
+        <tr><td>Right Arm:</td><td>50</td></tr>
+        <tr><td>Left Thigh:</td><td>50</td></tr>
+        <tr><td>Right Thigh:</td><td>50</td></tr>
+        <tr><td>Neck:</td><td>50</td></tr>
+        <tr><td>Left Calf:</td><td>50</td></tr>
+        <tr><td>Right Calf:</td><td>50</td></tr>
+      </table>
+    </div>
+
+    <div id="glist">
   <% @workouts.each do |workout| %><br>
-    <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong></li>
+    <% if workout.completed == false %>
+        <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
+        <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
+      <% else %>
+        <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
+      <% end %>
+    </li>
+
     <li class="list-group-item"><span class="badge"><%= workout.reps %></span></span>Reps:</li>
     <li class="list-group-item"><span class="badge"><%= workout.sets %></span></span>Sets:</li>
     <li class="list-group-item"><span class="badge"><%= workout.weight %></span></span>Weight:</li>
     <% end %>
   <% end %>
+</div>
 <% else %>
 
   Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
+
 

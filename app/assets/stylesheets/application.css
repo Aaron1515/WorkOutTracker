@@ -15,3 +15,22 @@
  *= require_tree .
  *= require_self
  */
+
+input{
+  background-color: red;
+  float: right;
+  width: 2em;
+  height: 2em;
+  margin-top: -4px;
+}
+
+#sfimg {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 5px;
+}
+
+body { 
+    padding-top: 50px; 
+}
+

@@ -1,10 +1,17 @@
-User sign in page
-
-<form action="/" method="post">
-  <input type="text" name="user[email]" placeholder="email"><br>
-  <input type="password" name="user[password]" placeholder="password"><br>
-  <input type="submit" value="submit">
+<img id="sfimg" class="col-xs-12" src="http://fitnesssf.com/wp-content/uploads/2014/08/fsf_locationBanner.marin_010816.jpg" height="350px">
+<center>
+  <form class="form-inline" action="/" method="post">
+  <div class="form-group col-xs-12 col-md-4 col-lg-4">
+    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="user[email]">
+  </div>
+  <div class="form-group col-xs-12 col-md-4 col-lg-4">
+    <label class="sr-only" for="exampleInputPassword3">Password</label>
+    <input type="password" class="form-control " id="exampleInputPassword3" placeholder="Password" name="user[password]">
+  </div>
+<div class="col-xs-12 col-md-4 col-lg-4">
+  <button type="submit" class="btn btn-info">Sign in</button>
+</div>
 </form>
-<br>
-<br>
-<a href="/users/new">Register</a>
+</center>
+

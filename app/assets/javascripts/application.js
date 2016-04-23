@@ -15,3 +15,41 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+$(document).ready(function() {
+    $('#show-measurements').on('click', showMeasurements);
+    $('#show-goals').on('click', showGoals);
+    $('.wobtn').on('click', markComplete);
+});
+
+var showMeasurements = function(event){
+  event.preventDefault();
+  console.log("Meas");
+  $('#mlist').toggle();
+};
+
+var showGoals = function(event){
+  event.preventDefault();
+  console.log("Goal");
+  $('#glist').toggle();
+};
+
+var markComplete = function(event){
+  event.preventDefault();
+  console.log(this);
+  var that = $(this);
+  var userId = $(this).attr('name');
+  var id = $(this).attr('id');
+  var url = '/users/' + userId + '/workouts/' + id
+  console.log(url);
+  $.ajax({
+    url: url,
+    method: "PATCH",
+    context: that
+  }).success(function(data){
+    console.log(data);
+    $(this).hide()
+    $(this).parent().css('class', 'list-group-item list-group-item-success')
+  }).fail(function(data){
+    console.log(data)
+  });
+};
