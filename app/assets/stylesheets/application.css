@@ -34,3 +34,15 @@ body {
     padding-top: 50px;
 }
 
+#sfimg{
+ height: 800px;
+ width: 100%;
+
+  background-image: url("http://fitnesssf.com/wp-content/uploads/2014/08/fsf_locationBanner.marin_010816.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login{
+  margin-top: -40%;
+}
