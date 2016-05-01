@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160423094502) do
     t.integer  "bench_press"
     t.integer  "squat"
     t.integer  "lat_pull"
+    t.string   "img_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
