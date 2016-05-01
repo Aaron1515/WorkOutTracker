@@ -6,7 +6,7 @@ aaron.workouts.create(name: "Squats", reps: 10, sets: 3, weight: "BW", phase: 1,
 aaron.workouts.create(name: "Jump Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 aaron.workouts.create(name: "Push-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 aaron.workouts.create(name: "Mtn Climbers", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "From Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "Frog Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 aaron.workouts.create(name: "Sit-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 
 
