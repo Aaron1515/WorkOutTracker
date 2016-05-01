@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160423094502) do
     t.integer  "bench_press"
     t.integer  "squat"
     t.integer  "lat_pull"
+    t.string   "img_url"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -44,12 +45,16 @@ ActiveRecord::Schema.define(version: 20160423094502) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "reps"
-    t.integer  "sets"
-    t.integer  "weight"
+    t.string   "name",                       null: false
+    t.integer  "reps",                       null: false
+    t.integer  "sets",                       null: false
+    t.string   "weight",                     null: false
     t.boolean  "completed",  default: false
     t.integer  "user_id"
+    t.integer  "phase",                      null: false
+    t.integer  "rest",                       null: false
+    t.integer  "day",                        null: false
+    t.string   "note"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

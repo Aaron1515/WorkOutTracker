@@ -48,6 +48,6 @@ class WorkoutsController < ApplicationController
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   def workout_params
-    params.require(:workout).permit(:name, :sets, :reps, :weight)
+    params.require(:workout).permit(:name, :sets, :reps, :weight, :rest, :phase, :day)
   end
 end

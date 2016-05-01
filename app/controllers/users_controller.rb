@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @current_user = current_user
     admin = User.find_by(id: session[:user_id])
     if admin.admin == true
       @user = User.find_by(id: params[:id])

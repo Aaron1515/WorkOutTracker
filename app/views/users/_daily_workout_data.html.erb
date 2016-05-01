@@ -1,0 +1,14 @@
+<% @workouts.each do |workout| %>
+  <% if workout.phase == 1 && workout.day == 1 %>
+      <tr>
+        <td><%= workout.updated_at.strftime("%b. %d %Y") %></td>
+        <td><%= workout.updated_at.strftime("%H:%M") %></td>
+
+        <td><%= workout.name %></td>
+        <td><%= workout.reps %></td>
+        <td><%= workout.sets %></td>
+        <td><%= workout.weight %></td>
+        <td><%= workout.completed ? "Yes" : "No" %></td>
+      </tr>
+  <% end %>
+<% end %>

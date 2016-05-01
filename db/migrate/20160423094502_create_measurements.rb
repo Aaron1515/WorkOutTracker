@@ -7,6 +7,7 @@ class CreateMeasurements < ActiveRecord::Migration
       t.integer :bench_press
       t.integer :squat
       t.integer :lat_pull
+      t.string :img_url
 
       t.timestamps null: false
     end
