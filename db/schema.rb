@@ -16,13 +16,6 @@ ActiveRecord::Schema.define(version: 20160423094502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "days", force: :cascade do |t|
-    t.integer  "day"
-    t.integer  "phase_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "measurements", force: :cascade do |t|
     t.integer  "weight"
     t.integer  "body_fat"
@@ -50,20 +43,13 @@ ActiveRecord::Schema.define(version: 20160423094502) do
     t.datetime "updated_at",                      null: false
   end
 
-  create_table "weeks", force: :cascade do |t|
-    t.integer  "week"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "workouts", force: :cascade do |t|
     t.string   "name"
     t.integer  "reps"
     t.integer  "sets"
     t.integer  "weight"
     t.boolean  "completed",  default: false
-    t.integer  "day_id"
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

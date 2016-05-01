@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 $(document).ready(function() {
+
     $('#show-measurements').on('click', showMeasurements);
     $('#show-goals').on('click', showGoals);
     $('.wobtn').on('click', markComplete);
