@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @current_user = current_user
     @user = User.find_by(id: params[:id])
     user = User.find_by(id: session[:user_id])
+
     if user.admin == true
       @admin = user
       @workouts = @user.workouts
