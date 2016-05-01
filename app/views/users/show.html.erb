@@ -1,19 +1,22 @@
 <% if session[:user_id] %>
 
   <% if @admin && @admin.admin == true %>
+
     <h1><%= @user.name.capitalize %>'s Progress</h1><h3>(<%= @user.email %>)</h3>
+
     <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
-      <table class="table table-striped">
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Name</th>
-          <th>Reps</th>
-          <th>Sets</th>
-          <th>Weight</th>
-          <th>Completed</th>
-        </tr>
-        <% @workouts.each do |workout| %>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Reps</th>
+        <th>Sets</th>
+        <th>Weight</th>
+        <th>Completed</th>
+      </tr>
+      <% @workouts.each do |workout| %>
         <tr>
           <td><%= workout.updated_at.strftime("%b. %d %Y") %></td>
           <td><%= workout.updated_at.strftime("%H:%M") %></td>
@@ -24,11 +27,10 @@
           <td><%= workout.weight %></td>
           <td><%= workout.completed ? "Yes" : "No" %></td>
         </tr>
-        <% end %>
-      </table>
-      <%= link_to 'Back', users_path %>
+      <% end %>
+    </table>
+    <%= link_to 'Back', users_path %>
   <% else %>
-
 
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
 
@@ -36,45 +38,60 @@
     <ul class="list-group">
       <center>
         <!-- Single button -->
-    <div class="btn-group">
-      <button id="show-goals" type="button" class="btn btn-default">
-        Goals</button>
-      <button type="button" class="btn btn-default">
-        Photos</button>
-      <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Day <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">Monday</a></li>
-        <li><a href="#">Tuesday</a></li>
-        <li><a href="#">Wednesday</a></li>
-        <li><a href="#">Thursday</a></li>
-        <li><a href="#">Friday</a></li>
-        <li><a href="#">Saturday</a></li>
-        <li><a href="#">Sunday</a></li>
-      </ul>
-    </div>
-  </center><br>
-
-
+        <div class="btn-group">
+          <button id="show-goals" type="button" class="btn btn-default">Workouts</button>
+          <button type="button" class="btn btn-default">Photos</button>
+          <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Day <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Monday</a></li>
+            <li><a href="#">Tuesday</a></li>
+            <li><a href="#">Wednesday</a></li>
+            <li><a href="#">Thursday</a></li>
+            <li><a href="#">Friday</a></li>
+            <li><a href="#">Saturday</a></li>
+            <li><a href="#">Sunday</a></li>
+          </ul>
+        </div>
+      </center>
+    </ul>
     <div id="mlist">
       <table id="measurement" class="table table-striped">
         <tr>
-          <th>Measurements:</th>
+          <th>Measurements</th>
+          <th></th>
         </tr>
         <tr>
-        <th>Body Part</th>
-        <th>Inches</th>
+          <th>Item</th>
+          <th>Status</th>
         </tr>
-        <tr><td>Waist:</td><td>50</td></tr>
-        <tr><td>Left Arm:</td><td>50</td></tr>
-        <tr><td>Right Arm:</td><td>50</td></tr>
-        <tr><td>Left Thigh:</td><td>50</td></tr>
-        <tr><td>Right Thigh:</td><td>50</td></tr>
-        <tr><td>Neck:</td><td>50</td></tr>
-        <tr><td>Left Calf:</td><td>50</td></tr>
-        <tr><td>Right Calf:</td><td>50</td></tr>
+
+        <tr> <!-- Add measurement to iterate last measurements -->
+          <td>Weight:</td>
+          <td>50 LB</td>
+        </tr>
+        <tr>
+          <td>Body Fat:</td>
+          <td>12 %</td>
+        </tr>
+        <tr>
+          <td>Dead Lift:</td>
+          <td>12 LB</td>
+        </tr>
+        <tr>
+          <td>Bench Press:</td>
+          <td>12 LB</td>
+        </tr>
+        <tr>
+          <td>Squat:</td>
+          <td>12 LB</td>
+        </tr>
+        <tr>
+          <td>Lat Pull Down:</td>
+          <td>12 LB</td>
+        </tr>
       </table>
     </div>
 
