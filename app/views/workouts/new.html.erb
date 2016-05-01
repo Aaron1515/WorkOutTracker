@@ -85,8 +85,9 @@ Add a workout for <%= @user.name.capitalize %>
   <%= f.submit "Create" %>
 <% end %>
 <hr>
+
+
 <!-- Squats template -->
-<br />
 <%= form_for [@user, @workout] do |f| %>
   <%= f.label :phase %>
   <%= f.select(:phase, options_for_select([
