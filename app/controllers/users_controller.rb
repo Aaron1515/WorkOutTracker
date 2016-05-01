@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @current_user = current_user
+    current_user
     @user = User.find_by(id: session[:user_id])
     if session[:user_id]
       @admin = User.find_by(id: session[:user_id])
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     # binding.pry
-    @current_user = current_user
+    current_user
     @user = User.find_by(id: params[:id])
     user = User.find_by(id: session[:user_id])
 
@@ -71,7 +71,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    current_user
+    client = User.find_by(id: params[:id])
+    if @current_user.admin == true
+      if client.destroy
+        redirect_to users_path
+      else
+        redirect_to users_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   private
