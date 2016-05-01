@@ -15,13 +15,6 @@
  *= require_self
  */
 
-input{
-  background-color: red;
-  float: right;
-  width: 2em;
-  height: 2em;
-  margin-top: -4px;
-}
 
 #sfimg {
   padding-left: 0px;
