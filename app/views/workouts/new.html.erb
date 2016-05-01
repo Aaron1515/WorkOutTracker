@@ -4,7 +4,20 @@ Add a workout for <%= @user.name.capitalize %>
 
     
         <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.select(:name, options_for_select([
+          ['squats','squats'],
+          ['jump squats','jump squats'],
+          ['push-ups','push-ups'],
+          ['mtn climbers','mtn climbers'],
+          ['frog jumps','frog jumps'],
+          ['sit-ups','sit-ups'],
+          ['squat(ankle/hip mobility)','squat(ankle/hip mobility)'],
+          ['inverted row','inverted row'],
+          ['push press','push press'],
+          ['db thruster','db thruster'],
+          ['trx lateral lunges','trx lateral lunges'],
+          ['trx figure 4','trx figure 4'],
+          ['trx forward lunge','trx forward lunge']])) %>
  
         <%= f.label :reps %>
         <%= f.text_field :reps %>
@@ -14,6 +27,26 @@ Add a workout for <%= @user.name.capitalize %>
 
         <%= f.label :weight %>
         <%= f.text_field :weight %>
+
+        <%= f.label :rest %>
+        <%= f.text_field :rest %>
+
+        <%= f.label :phase %>
+        <%= f.select(:phase, options_for_select([
+          [1,1],
+          [2,2],
+          [3,3],
+          [4,4]])) %>
+
+        <%= f.label :day %>
+        <%= f.select(:day, options_for_select([
+          [1,1],
+          [2,2],
+          [3,3],
+          [4,4]])) %>  
+
+        <%= f.label :note %>
+        <%= f.text_field :note %>
        
         <%= f.submit "Create" %>
    

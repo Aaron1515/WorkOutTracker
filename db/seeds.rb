@@ -2,13 +2,18 @@ eddy = User.create(name: "Eddy", email: "eddy@eddy.com", password: "password", a
 aaron = User.create(name: "Aaron", email: "aaron@aaron.com", password: "password", admin: false)
 sanderfer = User.create(name: "Sanderfer", email: "san@san.com", password: "password", admin: false)
 
-aaron.workouts.create(name: "Bench Press", reps: 10, sets: 5,completed: true, weight: 325)
-aaron.workouts.create(name: "Dips", reps: 12, sets: 5,completed: false, weight: 200)
-aaron.workouts.create(name: "Shoulder Press", reps: 10, sets: 5,completed: true, weight: 150)
+aaron.workouts.create(name: "Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "Jump Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "Push-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "Mtn Climbers", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "From Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+aaron.workouts.create(name: "Sit-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 
 
-100.times do
-sanderfer.workouts.create(name: "Bench Press", reps: 15, sets: 5,completed: true, weight: 300)
-sanderfer.workouts.create(name: "Squats", reps: 8, sets: 5,completed: false, weight: 290)
-sanderfer.workouts.create(name: "Deadlifts", reps: 12, sets: 5,completed: true, weight: 200)
-end
+sanderfer.workouts.create(name: "Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+sanderfer.workouts.create(name: "Jump Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+sanderfer.workouts.create(name: "Push-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+sanderfer.workouts.create(name: "Mtn Climbers", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+sanderfer.workouts.create(name: "From Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+sanderfer.workouts.create(name: "Sit-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+
