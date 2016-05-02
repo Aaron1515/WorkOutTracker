@@ -22,11 +22,14 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     user = User.find_by(id: session[:user_id])
 
-    if user.admin == true
-      @admin = user
-      @workouts = @user.workouts
+    if @current_user.admin == true
+      @admin = @current_user
+      if @user.workouts
+       @workouts = @user.workouts
+      end
     else
-      @workouts = @user.workouts
+      @user = user
+      @workouts = user.workouts
     end
   end
 
