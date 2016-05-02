@@ -17,7 +17,7 @@
           </tr>
           <% workout_for_phase = @workouts.where(phase: phase_num) %>
 
-          <!-- Start logic to collect days that are in one phase -->
+          <!-- Show days one bye one in each phase -->
           <% days = [] %>
           <% workout_for_phase.each do |workout| %>
             <% if workout.day %>
@@ -27,29 +27,29 @@
           <% days = days.uniq %>
           <% days.sort! %>
           <% days.each do |day| %>
-          <tr>
-            <th><a href="#">Day <%= day %></a></th>
-          </tr>
-          <tr>
-            <th>Name</th>
-            <th>Reps</th>
-            <th>Sets</th>
-            <th>Weight</th>
-            <th>Note</th>
-            <th>Completed</th>
-          </tr>
-          <% per_day_workouts = workout_for_phase.where(day: day) %>
-
-          <% per_day_workouts.each do |workout| %>
             <tr>
-              <td><%= workout.name %>    <a href="">Edit</a> | <a href="">Delete</a></td>
-              <td><%= workout.reps %></td>
-              <td><%= workout.sets %></td>
-              <td><%= workout.weight %></td>
-              <td><%= workout.note %></td>
-              <td><%= workout.completed ? "Yes" : "No" %></td>
+              <th><a href="#">Day <%= day %></a></th>
             </tr>
-          <% end %>
+            <tr>
+              <th>Name</th>
+              <th>Completed</th>
+              <th>Reps</th>
+              <th>Sets</th>
+              <th>Weight</th>
+              <th>Note</th>
+            </tr>
+            <% per_day_workouts = workout_for_phase.where(day: day) %>
+
+            <% per_day_workouts.each do |workout| %>
+              <tr>
+                <td><%= workout.name %>    <a href="">Edit</a> | <a href="">Delete</a></td>
+                <td><%= workout.completed ? "Yes" : "No" %></td>
+                <td><%= workout.reps %></td>
+                <td><%= workout.sets %></td>
+                <td><%= workout.weight %></td>
+                <td><%= workout.note %></td>
+              </tr>
+            <% end %>
           <% end %>
         </table>
       <% end %>
