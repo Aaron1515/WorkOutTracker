@@ -54,16 +54,16 @@ Add a workout for <%= @user.name.capitalize %>
     ])) %>
 
   <%= f.label :reps %>
-  <%= f.text_field :reps %>
+  <%= f.text_field :reps, required: true %>
 
   <%= f.label :sets %>
-  <%= f.text_field :sets%>
+  <%= f.text_field :sets, required: true %>
 
   <%= f.label :weight %>
-  <%= f.text_field :weight %>
+  <%= f.text_field :weight, required: true %>
 
   <%= f.label :rest %>
-  <%= f.text_field :rest %>
+  <%= f.text_field :rest, value: 0, required: true %>
 
   <%= f.label :phase %>
   <%= f.select(:phase, options_for_select([

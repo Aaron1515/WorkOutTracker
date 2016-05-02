@@ -28,7 +28,8 @@ class WorkoutsController < ApplicationController
       flash[:success] = "Workout successfully created"
       redirect_to user_path(params[:user_id])
     else
-      render 'new'
+      flash[:error] = "Workout was not created"
+      redirect_to user_path(params[:user_id])
     end
   end
 
