@@ -31,7 +31,8 @@ class UsersController < ApplicationController
       end
     else
       @user = @current_user
-      @workouts = @current_user.workouts
+      workouts = @current_user.workouts
+      render 'users/show', :locals => {phases: phases, workouts: workouts }
     end
   end
 
