@@ -20,16 +20,19 @@ class UsersController < ApplicationController
     # binding.pry
     current_user
     @user = User.find_by(id: params[:id])
-    user = User.find_by(id: session[:user_id])
-
+    # user = User.find_by(id: session[:user_id])
+    phases = phases(@user)
+    phases.sort!
     if @current_user.admin == true
       @admin = @current_user
       if @user.workouts
        @workouts = @user.workouts
+       render 'users/show', :locals => {:phases => phases }
       end
     else
-      @user = user
-      @workouts = user.workouts
+      @user = @current_user
+      workouts = @current_user.workouts
+      render 'users/show', :locals => {phases: phases, workouts: workouts }
     end
   end
 
@@ -95,6 +98,15 @@ class UsersController < ApplicationController
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def phases(user)
+  phase_collection = []
+  user.workouts.each do |workout|
+    phase_collection.push(workout.phase)
+    phase_collection = phase_collection.uniq
+  end
+  return phase_collection
   end
 
 end
