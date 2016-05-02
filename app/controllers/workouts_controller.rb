@@ -9,7 +9,7 @@ class WorkoutsController < ApplicationController
   def show
     @current_user = current_user
     @workout = Workout.find_by(id: params[:id])
-    p @workout
+    @workout
   end
 
   def new
@@ -21,11 +21,11 @@ class WorkoutsController < ApplicationController
 
   def create
     # binding.pry
-    current_user
+    # current_user
     @workout = Workout.new(workout_params)
     @workout.user_id = params[:user_id]
     if @workout.save
-      redirect_to users_path
+      redirect_to user_path(params[:user_id])
     else
       render 'new'
     end
