@@ -1,12 +1,7 @@
 <% if session[:user_id] %>
-
   <% if @admin && @admin.admin == true %>
-
     <h1><%= @user.name.capitalize %>'s Progress</h1><h3>(<%= @user.email %>)</h3>
-
     <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a><br><br>
-
-
  <!--    Show phase one by one if there is phase -->
 
     <% if phases && phases.length > 0 %>
@@ -39,7 +34,6 @@
               <th>Note</th>
             </tr>
             <% per_day_workouts = workout_for_phase.where(day: day) %>
-
             <% per_day_workouts.each do |workout| %>
               <tr>
                 <td><%= workout.name %>    <a href="">Edit</a> | <a href="">Delete</a></td>
@@ -54,14 +48,13 @@
         </table>
       <% end %>
     <% end %>
-
     <%= link_to 'Back', users_path %>
     <!-- End of admin view -->
   <% else %>
     <!-- Start of user's view -->
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
-
-    Here is Your Progress:</center><br><br>
+    Here is Your Progress:
+    </center><br><br>
     <ul class="list-group">
       <center>
         <!-- Single button -->
@@ -120,11 +113,20 @@
           <td>12 LB</td>
         </tr>
       </table>
-
+    </div>
+    <div id="glist">
+      <% binding.pry %>
     </div>
 
+
+
+
+
+
+
+
     <div id="glist">
-      <% @workouts.each do |workout| %><br>
+      <% workouts.each do |workout| %><br>
         <% if workout.completed == false %>
             <li class="list-group-item list-group-item-success">
               <strong><%= workout.name %></strong>
@@ -134,15 +136,13 @@
             <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
             </li>
           <% end %>
-
-        <li class="list-group-item"><span class="badge"><%= workout.reps %></span></span>Reps:</li>
-        <li class="list-group-item"><span class="badge"><%= workout.sets %></span></span>Sets:</li>
-        <li class="list-group-item"><span class="badge"><%= workout.weight %></span></span>Weight:</li>
-        <% end %>
+          <li class="list-group-item"><span class="badge"><%= workout.reps %></span>Reps:</li>
+          <li class="list-group-item"><span class="badge"><%= workout.sets %></span>Sets:</li>
+          <li class="list-group-item"><span class="badge"><%= workout.weight %></span>Weight:</li>
       <% end %>
     </div>
-    <% else %>
-
+  <% end %>
+<% else %>
   Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
 
