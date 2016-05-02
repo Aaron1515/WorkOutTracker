@@ -1,231 +1,239 @@
-Add a workout for <%= @user.name.capitalize %>
-
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :name %>
-  <%= f.select(:name, options_for_select([
-    ['1-arm row(scap/core stability)','1-arm row(scap/core stability)'],
-    ['85% run(endurance)','85% run(endurance)'],
-    ['90% run(endurance)','90% run(endurance)'],
-    ['95% run(endurance)','95% run(endurance)'],
-    ['abs sequence 1','abs sequence 1'],
-    ['ankle mobility(complex 1)','ankle mobility(complex 1)'],
-    ['back squat(ankle/hip mobility)','back squat(ankle/hip mobility)'],
-    ['ball slams','ball slams'],
-    ['bent over row(scap/core stability)','bent over row(scap/core stability)'],
-    ['bulgarian split squat(hip mobility)','bulgarian split squat(hip mobility)'],
-    ['burpees(muscular endurance)','burpees(muscular endurance)'],
-    ['calve raises','calve raises'],
-    ['db front squat(ankle/hip mobility)','db front squat(ankle/hip mobility)'],
-    ['db shoulder press(scap stability)','db shoulder press(scap stability)'],
-    ['db snatch','db snatch'],
-    ['deadlift(posterior chain)','deadlift(posterior chain)'],
-    ['double unders(endurance)','double unders(endurance)'],
-    ['db thruster(compound)','db thruster(compound)'],
-    ['farmers carry','farmers carry'],
-    ['farmers hold','farmers hold'],
-    ['farmer walks(heavy)','farmer walks(heavy)'],
-    ['frog jumps','frog jumps'],
-    ['goblet squats','goblet squats'],
-    ['hollow rocks','hollow rocks'],
-    ['inverted row(scap stability)','inverted row(scap stability)'],
-    ['jump squats','jump squats'],
-    ['kb swing(hip mobility)','kb swing(hip mobility)'],
-    ['mtn climbers','mtn climbers'],
-    ['plank(core stability)','plank(core stability)'],
-    ['push press(gh mobility)','push press(gh mobility)'],
-    ['push-ups','push-ups'],
-    ['push-ups(stability/endurance)','push-ups(stability/endurance)'],
-    ['renegade rows(core stability)','renegade rows(core stability)'],
-    ['run','run'],
-    ['run(endurance)','run(endurance)'],
-    ['squats','squats'],
-    ['shoulder press(shoulder stability)','shoulder press(shoulder stability)'],
-    ['sit-ups','sit-ups'],
-    ['squat(ankle/hip mobility)','squat(ankle/hip mobility)'],
-    ['standing face-pulls','standing face-pulls'],
-    ['superman(posterior chain)','superman(posterior chain)'],
-    ['thursters','thursters'],
-    ['trx figure 4','trx figure 4'],
-    ['trx forward lunge','trx forward lunge'],
-    ['trx lateral lunges','trx lateral lunges'],
-    ['trx pidgeon stretch','trx pidgeon stretch'],
-    ['tuck jumps','tuck jumps'],
-    ['wall balls(compound)','wall balls(compound)']
-    ])) %>
-
-  <%= f.label :reps %>
-  <%= f.text_field :reps, required: true %>
-
-  <%= f.label :sets %>
-  <%= f.text_field :sets, required: true %>
-
-  <%= f.label :weight %>
-  <%= f.text_field :weight, required: true %>
-
-  <%= f.label :rest %>
-  <%= f.text_field :rest, value: 0, required: true %>
-
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-
-  <%= f.label :note %>
-  <%= f.text_field :note %>
-
-  <%= f.submit "Create" %>
-<% end %>
-<hr>
+<div class="container">
+  <div class="page-header">
+    <h1><small>Add a workout for</small> <%= @user.name.capitalize %></h1>
+  </div>
 
 
-<!-- Squats template -->
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "squats" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Squats 10-3-BW" %>
-<% end %>
+  <%= form_for [@user, @workout] do |f| %>
 
-<!-- Jump squats template -->
-<br />
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "jump squats" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Jump Squats 10-3-BW" %>
-<% end %>
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
 
-<!-- Push Up template -->
-<br />
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
+    <%= f.label :name %>
+    <%= f.select(:name, options_for_select([
+      ['1-arm row(scap/core stability)','1-arm row(scap/core stability)'],
+      ['85% run(endurance)','85% run(endurance)'],
+      ['90% run(endurance)','90% run(endurance)'],
+      ['95% run(endurance)','95% run(endurance)'],
+      ['abs sequence 1','abs sequence 1'],
+      ['ankle mobility(complex 1)','ankle mobility(complex 1)'],
+      ['back squat(ankle/hip mobility)','back squat(ankle/hip mobility)'],
+      ['ball slams','ball slams'],
+      ['bent over row(scap/core stability)','bent over row(scap/core stability)'],
+      ['bulgarian split squat(hip mobility)','bulgarian split squat(hip mobility)'],
+      ['burpees(muscular endurance)','burpees(muscular endurance)'],
+      ['calve raises','calve raises'],
+      ['db front squat(ankle/hip mobility)','db front squat(ankle/hip mobility)'],
+      ['db shoulder press(scap stability)','db shoulder press(scap stability)'],
+      ['db snatch','db snatch'],
+      ['deadlift(posterior chain)','deadlift(posterior chain)'],
+      ['double unders(endurance)','double unders(endurance)'],
+      ['db thruster(compound)','db thruster(compound)'],
+      ['farmers carry','farmers carry'],
+      ['farmers hold','farmers hold'],
+      ['farmer walks(heavy)','farmer walks(heavy)'],
+      ['frog jumps','frog jumps'],
+      ['goblet squats','goblet squats'],
+      ['hollow rocks','hollow rocks'],
+      ['inverted row(scap stability)','inverted row(scap stability)'],
+      ['jump squats','jump squats'],
+      ['kb swing(hip mobility)','kb swing(hip mobility)'],
+      ['mtn climbers','mtn climbers'],
+      ['plank(core stability)','plank(core stability)'],
+      ['push press(gh mobility)','push press(gh mobility)'],
+      ['push-ups','push-ups'],
+      ['push-ups(stability/endurance)','push-ups(stability/endurance)'],
+      ['renegade rows(core stability)','renegade rows(core stability)'],
+      ['run','run'],
+      ['run(endurance)','run(endurance)'],
+      ['squats','squats'],
+      ['shoulder press(shoulder stability)','shoulder press(shoulder stability)'],
+      ['sit-ups','sit-ups'],
+      ['squat(ankle/hip mobility)','squat(ankle/hip mobility)'],
+      ['standing face-pulls','standing face-pulls'],
+      ['superman(posterior chain)','superman(posterior chain)'],
+      ['thursters','thursters'],
+      ['trx figure 4','trx figure 4'],
+      ['trx forward lunge','trx forward lunge'],
+      ['trx lateral lunges','trx lateral lunges'],
+      ['trx pidgeon stretch','trx pidgeon stretch'],
+      ['tuck jumps','tuck jumps'],
+      ['wall balls(compound)','wall balls(compound)']
+      ])) %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "push-ups" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Push-Ups 10-3-BW" %>
-<% end %>
+    <%= f.label :reps %>
+    <%= f.text_field :reps, required: true, placeholder: "Numbers" %>
 
-<!-- Mountian Climbers template -->
-<br />
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
+    <%= f.label :sets %>
+    <%= f.text_field :sets, required: true, placeholder: "Numbers" %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "mtn climbers" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Mtn Climbers 10-3-BW" %>
-<% end %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight, required: true, placeholder: "Numbers / BW " %>
 
-<!-- Frog Jumps template -->
-<br />
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
+    <%= f.label :rest %>
+    <%= f.text_field :rest, value: 0, required: true %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "frog jumps" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Frog Jumps 10-3-BW" %>
-<% end %>
 
-<!-- Sit-ups template -->
-<br />
-<%= form_for [@user, @workout] do |f| %>
-  <%= f.label :phase %>
-  <%= f.select(:phase, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
+    <%= f.label :note %>
+    <%= f.text_field :note, placeholder: "Optional" %>
 
-  <%= f.label :day %>
-  <%= f.select(:day, options_for_select([
-    [1,1],
-    [2,2],
-    [3,3],
-    [4,4]])) %>
-  <%= f.hidden_field :name, value: "sit-ups" %>
-  <%= f.hidden_field :reps, value: 10 %>
-  <%= f.hidden_field :sets, value: 3 %>
-  <%= f.hidden_field :weight, value: "BW" %>
-  <%= f.hidden_field :rest, value: "null" %>
-  <%= f.submit "Sit-Ups 10-3-BW" %>
-<% end %>
+    <%= f.submit "Create" %>
+  <% end %>
+  <hr>
+
+
+  <!-- Squats template -->
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "squats" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Squats 10-3-BW" %>
+  <% end %>
+
+  <!-- Jump squats template -->
+  <br />
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "jump squats" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Jump Squats 10-3-BW" %>
+  <% end %>
+
+  <!-- Push Up template -->
+  <br />
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "push-ups" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Push-Ups 10-3-BW" %>
+  <% end %>
+
+  <!-- Mountian Climbers template -->
+  <br />
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "mtn climbers" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Mtn Climbers 10-3-BW" %>
+  <% end %>
+
+  <!-- Frog Jumps template -->
+  <br />
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "frog jumps" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Frog Jumps 10-3-BW" %>
+  <% end %>
+
+  <!-- Sit-ups template -->
+  <br />
+  <%= form_for [@user, @workout] do |f| %>
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+    <%= f.hidden_field :name, value: "sit-ups" %>
+    <%= f.hidden_field :reps, value: 10 %>
+    <%= f.hidden_field :sets, value: 3 %>
+    <%= f.hidden_field :weight, value: "BW" %>
+    <%= f.hidden_field :rest, value: "null" %>
+    <%= f.submit "Sit-Ups 10-3-BW" %>
+  <% end %>
+</div>
