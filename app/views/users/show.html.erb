@@ -1,5 +1,12 @@
 <% if session[:user_id] %>
   <% if @admin && @admin.admin == true %>
+
+    <!-- Create flash when successfull in creating workout -->
+    <% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+    <% end %>
+    <!-- End of flash message -->
+
     <h1><%= @user.name.capitalize %>'s Progress</h1>
     <h3>(<%= @user.email %>)</h3>
     <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
