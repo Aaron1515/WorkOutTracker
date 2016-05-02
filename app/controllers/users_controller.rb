@@ -22,12 +22,12 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     # user = User.find_by(id: session[:user_id])
     phases = phases(@user)
-    binding.pry
+    phases.sort!
     if @current_user.admin == true
       @admin = @current_user
       if @user.workouts
        @workouts = @user.workouts
-       render 'users/show', :locals => {:phases => 'Some text'}
+       render 'users/show', :locals => {:phases => phases }
       end
     else
       @user = @current_user
