@@ -1,9 +1,11 @@
 <% if session[:user_id] %>
   <% if @admin && @admin.admin == true %>
-    <h1><%= @user.name.capitalize %>'s Progress</h1><h3>(<%= @user.email %>)</h3>
-    <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a><br><br>
- <!--    Show phase one by one if there is phase -->
-
+    <h1><%= @user.name.capitalize %>'s Progress</h1>
+    <h3>(<%= @user.email %>)</h3>
+    <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
+    <br>
+    <br>
+    <!--    Show phase one by one if there is phase -->
     <% if phases && phases.length > 0 %>
       <% phases.each do |phase_num| %>
         <table class="table table-striped">
@@ -36,7 +38,7 @@
             <% per_day_workouts = workout_for_phase.where(day: day) %>
             <% per_day_workouts.each do |workout| %>
               <tr>
-                <td><%= workout.name %>    <a href="">Edit</a> | <a href="">Delete</a></td>
+                <td><%= workout.name %><%= "   " %><a href="">Edit</a> | <a href="">Delete</a></td>
                 <td><%= workout.completed ? "Yes" : "No" %></td>
                 <td><%= workout.reps %></td>
                 <td><%= workout.sets %></td>
@@ -115,30 +117,42 @@
       </table>
     </div>
     <div id="glist">
-      <% binding.pry %>
-    </div>
+      <% phases.each do |phase_num| %>
 
+        <h1>Phase : <%= phase_num %></h1>
+        <% phase_workout = workouts.select {|workout| workout.phase == phase_num} %>
 
-
-
-
-
-
-
-    <div id="glist">
-      <% workouts.each do |workout| %><br>
-        <% if workout.completed == false %>
-            <li class="list-group-item list-group-item-success">
-              <strong><%= workout.name %></strong>
-              <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
+        <% days = [] %>
+        <% phase_workout.each do |workout| %>
+          <% days.push(workout.day) %>
+        <% end %>
+        <% days = days.uniq %>
+        <% days.sort! %>
+        <% days.each do |day| %>
+          <h2> Day : <%= day %></h2>
+          <% day_workout = phase_workout.select {|workout| workout.day == day} %>
+          <% day_workout.each do |workout| %>
+            <% if workout.completed == false %>
+              <li class="list-group-item list-group-item-success">
+                <strong><%= workout.name %></strong>
+                <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
+              </li>
+            <% else %>
+              <li class="list-group-item list-group-item-success">
+                <strong><%= workout.name %></strong>
+              </li>
+            <% end %>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.reps %></span>Reps:
             </li>
-          <% else %>
-            <li class="list-group-item list-group-item-success"><strong><%= workout.name %></strong>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.sets %></span>Sets:
+            </li>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.weight %></span>Weight:
             </li>
           <% end %>
-          <li class="list-group-item"><span class="badge"><%= workout.reps %></span>Reps:</li>
-          <li class="list-group-item"><span class="badge"><%= workout.sets %></span>Sets:</li>
-          <li class="list-group-item"><span class="badge"><%= workout.weight %></span>Weight:</li>
+        <% end %>
       <% end %>
     </div>
   <% end %>
