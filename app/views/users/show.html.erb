@@ -1,65 +1,71 @@
 <% if session[:user_id] %>
   <% if @admin && @admin.admin == true %>
+    <div class="container">
 
-    <!-- Create flash when successfull in creating workout -->
-    <% if flash[:success] %>
-    <div class="alert alert-success"><%= flash[:success] %></div>
-    <% elsif flash[:error] %>
-    <div class="alert alert-error"><%= flash[:error] %></div>
-    <% end %>
-    <!-- End of flash message -->
-
-    <h1><%= @user.name.capitalize %>'s Progress</h1>
-    <h3>(<%= @user.email %>)</h3>
-    <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
-    <br>
-    <br>
-    <!--    Show phase one by one if there is phase -->
-    <% if phases && phases.length > 0 %>
-      <% phases.each do |phase_num| %>
-        <table class="table table-striped">
-          <tr>
-            <th><a href="#">Phase <%= phase_num %></a></th>
-          </tr>
-          <% workout_for_phase = @workouts.where(phase: phase_num) %>
-
-          <!-- Show days one bye one in each phase -->
-          <% days = [] %>
-          <% workout_for_phase.each do |workout| %>
-            <% if workout.day %>
-              <% days.push(workout.day) %>
-            <% end %>
-          <% end %>
-          <% days = days.uniq %>
-          <% days.sort! %>
-          <% days.each do |day| %>
-            <tr>
-              <th><a href="#">Day <%= day %></a></th>
-            </tr>
-            <tr>
-              <th>Name</th>
-              <th>Completed</th>
-              <th>Reps</th>
-              <th>Sets</th>
-              <th>Weight</th>
-              <th>Note</th>
-            </tr>
-            <% per_day_workouts = workout_for_phase.where(day: day) %>
-            <% per_day_workouts.each do |workout| %>
-              <tr>
-                <td><%= workout.name %><%= "   " %><a href="">Edit</a> | <a href="">Delete</a></td>
-                <td><%= workout.completed ? "Yes" : "No" %></td>
-                <td><%= workout.reps %></td>
-                <td><%= workout.sets %></td>
-                <td><%= workout.weight %></td>
-                <td><%= workout.note %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </table>
+      <!-- Create flash when successfull in creating workout -->
+      <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+      <% elsif flash[:error] %>
+      <div class="alert alert-error"><%= flash[:error] %></div>
       <% end %>
-    <% end %>
-    <%= link_to 'Back', users_path %>
+      <!-- End of flash message -->
+
+      <!-- Title of client -->
+      <h1><%= @user.name.capitalize %>'s Progress</h1>
+      <h3>(<%= @user.email %>)</h3>
+      <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
+      <br>
+      <br><!-- End of title of client -->
+
+      <!--    Show phase one by one if there is phase -->
+      <% if phases && phases.length > 0 %>
+        <% phases.each do |phase_num| %>
+          <table class="table table-striped">
+            <tr>
+              <th><a href="#"><h3>Phase <%= phase_num %><h3></a></th>
+            </tr>
+            <% workout_for_phase = @workouts.where(phase: phase_num) %>
+
+            <!-- Show days one bye one in each phase -->
+            <% days = [] %>
+            <% workout_for_phase.each do |workout| %>
+              <% if workout.day %>
+                <% days.push(workout.day) %>
+              <% end %>
+            <% end %>
+            <% days = days.uniq %>
+            <% days.sort! %>
+            <% days.each do |day| %>
+              <tr>
+                <th><a href="#">Day <%= day %></a></th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>Completed</th>
+                <th>Reps</th>
+                <th>Sets</th>
+                <th>Weight</th>
+                <th>Note</th>
+              </tr>
+              <% per_day_workouts = workout_for_phase.where(day: day) %>
+              <% per_day_workouts.each do |workout| %>
+                <tr>
+                  <td><%= workout.name %><%= "   " %><a href="">Edit</a> | <a href="">Delete</a></td>
+                  <td><%= workout.completed ? "Yes" : "No" %></td>
+                  <td><%= workout.reps %></td>
+                  <td><%= workout.sets %></td>
+                  <td><%= workout.weight %></td>
+                  <td><%= workout.note %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        <% end %>    <!-- End of day view -->
+      <% end %>  <!-- End of phase view -->
+
+
+      <%= link_to 'Back', users_path %>
+    </div>
     <!-- End of admin view -->
   <% else %>
     <!-- Start of user's view -->
