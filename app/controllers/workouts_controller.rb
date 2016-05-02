@@ -25,9 +25,11 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(workout_params)
     @workout.user_id = params[:user_id]
     if @workout.save
+      flash[:success] = "Workout successfully created"
       redirect_to user_path(params[:user_id])
     else
-      render 'new'
+      flash[:error] = "Workout was not created"
+      redirect_to user_path(params[:user_id])
     end
   end
 
