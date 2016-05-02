@@ -24,7 +24,9 @@ class UsersController < ApplicationController
 
     if @current_user.admin == true
       @admin = @current_user
-      @workouts = @user.workouts
+      if @user.workouts
+       @workouts = @user.workouts
+      end
     else
       @user = user
       @workouts = user.workouts
