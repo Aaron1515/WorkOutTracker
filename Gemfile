@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'autoprefixer-rails'
 gem 'rails_12factor', group: :production
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
