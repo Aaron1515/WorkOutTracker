@@ -1,23 +1,32 @@
+def rand_workout
+  ["Squats", "Jump Squats", "Push-Ups","Mtn Climbers","Frog Jumps","Sit-Ups"].sample
+end
+
+def rand_weight
+  ('100'..'250').to_a.push('BW').sample
+end
+
+
+# Create 3 known users
 eddy = User.create(name: "Eddy", email: "eddy@eddy.com", password: "password", admin: true)
 aaron = User.create(name: "Aaron", email: "aaron@aaron.com", password: "password", admin: false)
 sanderfer = User.create(name: "Sanderfer", email: "san@san.com", password: "password", admin: false)
 
-aaron.workouts.create(name: "Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "Jump Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "Push-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "Mtn Climbers", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "Frog Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-aaron.workouts.create(name: "Sit-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
 
+# Create fake Users
+30.times do #create 30 users
+  random_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: "password", admin: false)
 
-sanderfer.workouts.create(name: "Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-sanderfer.workouts.create(name: "Jump Squats", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-sanderfer.workouts.create(name: "Push-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-sanderfer.workouts.create(name: "Mtn Climbers", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-sanderfer.workouts.create(name: "From Jumps", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
-sanderfer.workouts.create(name: "Sit-Ups", reps: 10, sets: 3, weight: "BW", phase: 1, day:1, rest:'0', completed: false)
+    #each user create 10 work out from phase 1- 4
+    10.times do
+      random_user.workouts.create(name: rand_workout, reps: rand(7..10), sets: rand(2..3), weight: rand_workout, phase: rand(1..4), day: rand(1..4), rest: rand(0..3))
+      aaron.workouts.create(name: rand_workout, reps: rand(7..10), sets: rand(2..3), weight: rand_workout, phase: rand(1..4), day: rand(1..4), rest: rand(0..3))
+      sanderfer.workouts.create(name: rand_workout, reps: rand(7..10), sets: rand(2..3), weight: rand_workout, phase: rand(1..4), day: rand(1..4), rest: rand(0..3))
+    end
 
+    # Create 10 random measurements for random users
+    10.times do
+      random_user.measurements.create(weight: rand(90..200), body_fat: (6..20), dead_lift: rand(100..300), bench_press: rand(100..300), squat: rand(100..300), lat_pull: rand(100.300))
+    end
 
-30.times do
-random_user = User.create(name: "Aaron", email: "aaron@aaron.com" + rand(99).to_s, password: "password", admin: false)
 end
