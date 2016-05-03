@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # binding.pry
     current_user
     @user = User.find_by(id: params[:id])
     # user = User.find_by(id: session[:user_id])
@@ -53,12 +52,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @current_user = current_user
-    admin = User.find_by(id: session[:user_id])
-    if admin.admin == true
+    current_user
+    if @current_user.admin == true
       @user = User.find_by(id: params[:id])
     else
-      redirect_to new_user_path
+      redirect_to @current_user
     end
   end
 
