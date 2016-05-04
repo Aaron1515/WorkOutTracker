@@ -1,2 +1,2 @@
-module MeasurementHelper
+module MeasurementsHelper
 end
