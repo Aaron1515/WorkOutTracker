@@ -25,7 +25,7 @@ function graphOutWeight(){
 
     var vis = d3.select('#vis_weight'),
         WIDTH = 800,
-        HEIGHT = 500,
+        HEIGHT = 300,
         MARGINS = {
           top: 20,
           right: 20,
@@ -110,7 +110,7 @@ function graphOutBodyFat(){
 
     var vis = d3.select('#vis_body_fat'),
         WIDTH = 800,
-        HEIGHT = 500,
+        HEIGHT = 300,
         MARGINS = {
           top: 20,
           right: 20,
