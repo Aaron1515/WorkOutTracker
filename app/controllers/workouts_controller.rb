@@ -33,12 +33,38 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def update
-    @current_user = current_user
-    if request.xhr?
+  def edit
+    current_user
+    if @current_user.admin == true
       @workout = Workout.find_by(id: params[:id])
-      @workout.update(completed: true)
-      render :json=>true
+      @user = User.find_by(id: params[:user_id])
+    else
+      redirect_to logout_path
+    end
+  end
+
+  def update
+    current_user
+    # binding.pry
+    if @current_user.admin = true
+      # binding.pry
+      if request.xhr?
+        @workout = Workout.find_by(id: params[:id])
+        @workout.update(completed: true)
+        render :json=>true
+      else
+        # binding.pry
+        @workout = Workout.find_by(id: params[:id])
+        @user = User.find_by(id: params[:user_id])
+        if @workout.update_attributes(workout_params)
+          flash[:success] = "Workout successfully updated!"
+          redirect_to user_path(@user.id)
+        else
+          flash[:error] = "Your missing a field."
+          redirect_to edit_user_workout_path(@user)
+        end
+      end
+      # binding.pry
     end
   end
 

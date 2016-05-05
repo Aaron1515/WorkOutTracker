@@ -50,7 +50,7 @@
               <% per_day_workouts = workout_for_phase.where(day: day) %>
               <% per_day_workouts.each do |workout| %>
                 <tr>
-                  <td><%= workout.name %><%= "   " %><a href="">Edit</a> | <a href="">Delete</a></td>
+                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <a href="">Delete</a></td>
                   <td><%= workout.completed ? "Yes" : "No" %></td>
                   <td><%= workout.reps %></td>
                   <td><%= workout.sets %></td>
