@@ -62,8 +62,10 @@ class UsersController < ApplicationController
 
   def update
     @admin = User.find_by(id: session[:user_id])
+
     if @admin.admin == true
       @user = User.find_by(email: params[:user][:email])
+
       if @user.update_attributes(user_params)
         redirect_to users_path
       else
