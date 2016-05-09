@@ -50,7 +50,7 @@
               <% per_day_workouts = workout_for_phase.where(day: day) %>
               <% per_day_workouts.each do |workout| %>
                 <tr>
-                  <td><%= workout.name %><%= "   " %><a href="">Edit</a> | <a href="">Delete</a></td>
+                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <a href="">Delete</a></td>
                   <td><%= workout.completed ? "Yes" : "No" %></td>
                   <td><%= workout.reps %></td>
                   <td><%= workout.sets %></td>
@@ -171,6 +171,22 @@
       <% end %>
     </div>
   <% end %>
+
+  <!-- D3 graph for progress -->
+  <!-- Graph out weight -->
+  <hr>
+  <h1 class="center">Weight</h1>
+  <svg id="vis_weight" class="svg_charts"></svg>
+
+  <script type="text/javascript">graphOutWeight();</script>
+
+  <!-- Graph out body fat -->
+  <hr>
+  <h1 class="center">Body Fat</h1>
+  <svg id="vis_body_fat" class="svg_charts"></svg>
+
+  <script type="text/javascript">graphOutBodyFat();</script>
+
 <% else %>
   Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
