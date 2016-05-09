@@ -4,22 +4,22 @@ function graphOutWeight(){
     // Put all data for weight in this collection = [{x: day number, y: weight},{}]
     var lineData = [{
       x: 0,
-      y: 5
+      y: 210
     }, {
       x: 20,
-      y: 20
+      y: 200
     }, {
       x: 40,
-      y: 10
+      y: 190
     }, {
       x: 60,
-      y: 40
+      y: 175
     }, {
       x: 80,
-      y: 5
+      y: 170
     }, {
-      x: 170,
-      y: 60
+      x: 100,
+      y: 175
     }];
 
 
