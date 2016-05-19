@@ -1,0 +1,112 @@
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    var availableWorkouts = [
+      '1-arm row(scap/core stability)',
+      '1-arm row(scap/core stability)',
+      '85% run(endurance)',
+      '90% run(endurance)',
+      '95% run(endurance)',
+      'abs sequence 1',
+      'ankle mobility(complex 1)',
+      'back squat(ankle/hip mobility)',
+      'ball slams',
+      'bent over row(scap/core stability)',
+      'bulgarian split squat(hip mobility)',
+      'burpees(muscular endurance)',
+      'calve raises',
+      'db front squat(ankle/hip mobility)',
+      'db shoulder press(scap stability)',
+      'db snatch',
+      'deadlift(posterior chain)',
+      'double unders(endurance)',
+      'db thruster(compound)',
+      'farmers carry',
+      'farmers hold',
+      'farmer walks(heavy)',
+      'frog jumps',
+      'goblet squats',
+      'hollow rocks',
+      'inverted row(scap stability)',
+      'jump squats',
+      'kb swing(hip mobility)',
+      'mtn climbers',
+      'plank(core stability)',
+      'push press(gh mobility)',
+      'push-ups',
+      'push-ups(stability/endurance)',
+      'renegade rows(core stability)',
+      'run',
+      'run(endurance)',
+      'squats',
+      'shoulder press(shoulder stability)',
+      'sit-ups',
+      'squat(ankle/hip mobility)',
+      'standing face-pulls',
+      'superman(posterior chain)',
+      'thursters',
+      'trx figure 4',
+      'trx forward lunge',
+      'trx lateral lunges',
+      'trx pidgeon stretch',
+      'tuck jumps',
+      'wall balls(compound)',
+    ];
+    $( "#workout_name" ).autocomplete({
+      source: availableWorkouts
+    });
+  });
+  </script>
+</head>
+
+<div class="container">
+  <div class="page-header">
+    <h1><small>Add a workout for</small> <%= @user.name.capitalize %></h1>
+  </div>
+
+
+
+  <%= form_for [@user, @workout] do |f| %>
+
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <br>
+    <br>
+    <p>Workout:
+    <%= f.text_field :name, placeholder: "Name" %>
+
+    <%= f.text_field :reps, required: true, placeholder: "Reps" %>
+
+    <%= f.text_field :sets, required: true, placeholder: "Sets" %>
+
+    <%= f.text_field :weight, required: true, placeholder: "Weight" %>
+    </p>
+
+    <br>
+    <p> Optional:
+    <%= f.label :rest %>
+    <%= f.text_field :rest, value: 0, required: true %>
+
+
+    <%= f.label :note %>
+    <%= f.text_field :note, placeholder: "Optional" %>
+    </p>
+    <br>
+    <%= f.submit "Submit" %>
+  <% end %>
