@@ -13,9 +13,12 @@
       <!-- Title of client -->
       <h1><%= @user.name.capitalize %>'s Progress</h1>
       <h3>(<%= @user.email %>)</h3>
-      <a href="/users/<%= @user.id %>/workouts/new">Create New Workout</a>
+      <!-- End of title of client -->
+
+      <!-- Button for workout -->
+      <a href="/users/<%= @user.id %>/workouts/new"><button class="btn btn-lg btn-primary">Create New Workout</button></a>
       <br>
-      <br><!-- End of title of client -->
+      <br>
 
       <!--    Show phase one by one if there is phase -->
       <% if phases && phases.length > 0 %>
@@ -23,10 +26,15 @@
           <table class="table table-striped">
             <tr>
               <th><a href="#"><h3>Phase <%= phase_num %><h3></a></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
             <% workout_for_phase = @workouts.where(phase: phase_num) %>
 
-            <!-- Show days one bye one in each phase -->
+            <!-- Show days one by one in each phase -->
             <% days = [] %>
             <% workout_for_phase.each do |workout| %>
               <% if workout.day %>
@@ -38,6 +46,11 @@
             <% days.each do |day| %>
               <tr>
                 <th><a href="#">Day <%= day %></a></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
               </tr>
               <tr>
                 <th>Name</th>
@@ -67,6 +80,15 @@
       <%= link_to 'Back', users_path %>
     </div>
     <!-- End of admin view -->
+
+
+
+
+
+
+
+
+
   <% else %>
     <!-- Start of user's view -->
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
@@ -170,11 +192,14 @@
         <% end %>
       <% end %>
     </div>
+
   <% end %>
+
 
   <!-- D3 graph for progress -->
   <!-- Graph out weight -->
   <hr>
+  <div class="container">
   <h1 class="center">Weight</h1>
   <svg id="vis_weight" class="svg_charts"></svg>
 
@@ -184,8 +209,8 @@
   <hr>
   <h1 class="center">Body Fat</h1>
   <svg id="vis_body_fat" class="svg_charts"></svg>
-
   <script type="text/javascript">graphOutBodyFat();</script>
+  </div>
 
 <% else %>
   Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
