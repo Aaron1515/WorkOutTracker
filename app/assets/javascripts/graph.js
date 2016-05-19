@@ -89,22 +89,22 @@ function graphOutBodyFat(){
     // Put all data for weight in this collection
       var lineData = [{
       x: 1,
-      y: 5
+      y: 15
     }, {
       x: 20,
-      y: 20
+      y: 14
     }, {
       x: 40,
-      y: 10
+      y: 13
     }, {
       x: 60,
-      y: 40
+      y: 12
     }, {
       x: 80,
-      y: 5
+      y: 11
     }, {
       x: 200,
-      y: 60
+      y: 10
     }];
 
 
