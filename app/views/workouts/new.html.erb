@@ -1,4 +1,69 @@
+  <head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  </head>
   <%= render 'form' %>
   <hr>
 
   <%= render 'template' %>
+
+  <script>
+  $(function() {
+    var availableWorkouts = [
+      '1-arm row(scap/core stability)',
+      '1-arm row(scap/core stability)',
+      '85% run(endurance)',
+      '90% run(endurance)',
+      '95% run(endurance)',
+      'abs sequence 1',
+      'ankle mobility(complex 1)',
+      'back squat(ankle/hip mobility)',
+      'ball slams',
+      'bent over row(scap/core stability)',
+      'bulgarian split squat(hip mobility)',
+      'burpees(muscular endurance)',
+      'calve raises',
+      'db front squat(ankle/hip mobility)',
+      'db shoulder press(scap stability)',
+      'db snatch',
+      'deadlift(posterior chain)',
+      'double unders(endurance)',
+      'db thruster(compound)',
+      'farmers carry',
+      'farmers hold',
+      'farmer walks(heavy)',
+      'frog jumps',
+      'goblet squats',
+      'hollow rocks',
+      'inverted row(scap stability)',
+      'jump squats',
+      'kb swing(hip mobility)',
+      'mtn climbers',
+      'plank(core stability)',
+      'push press(gh mobility)',
+      'push-ups',
+      'push-ups(stability/endurance)',
+      'renegade rows(core stability)',
+      'run',
+      'run(endurance)',
+      'squats',
+      'shoulder press(shoulder stability)',
+      'sit-ups',
+      'squat(ankle/hip mobility)',
+      'standing face-pulls',
+      'superman(posterior chain)',
+      'thursters',
+      'trx figure 4',
+      'trx forward lunge',
+      'trx lateral lunges',
+      'trx pidgeon stretch',
+      'tuck jumps',
+      'wall balls(compound)',
+    ];
+    $( "#workout_name" ).autocomplete({
+      source: availableWorkouts
+    });
+  });
+  </script>
