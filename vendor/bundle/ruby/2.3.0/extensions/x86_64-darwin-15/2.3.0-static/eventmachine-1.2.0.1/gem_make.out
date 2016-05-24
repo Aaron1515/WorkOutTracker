@@ -1,0 +1,20 @@
+current directory: /Users/Aaron/Documents/Projects/WorkOutTracker/vendor/bundle/ruby/2.3.0/gems/eventmachine-1.2.0.1/ext/fastfilereader
+/Users/Aaron/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20160522-60742-11jq92d.rb extconf.rb
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/Aaron/Documents/Projects/WorkOutTracker/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-15/2.3.0-static/eventmachine-1.2.0.1/mkmf.log
+
+current directory: /Users/Aaron/Documents/Projects/WorkOutTracker/vendor/bundle/ruby/2.3.0/gems/eventmachine-1.2.0.1/ext/fastfilereader
+make "DESTDIR=" clean
+
+current directory: /Users/Aaron/Documents/Projects/WorkOutTracker/vendor/bundle/ruby/2.3.0/gems/eventmachine-1.2.0.1/ext/fastfilereader
+make "DESTDIR="
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/Aaron/Documents/Projects/WorkOutTracker/vendor/bundle/ruby/2.3.0/gems/eventmachine-1.2.0.1/ext/fastfilereader
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20160522-60742-u8pwdo

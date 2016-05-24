@@ -1,2 +1,11 @@
+branch-defaults:
+  dev:
+    environment: rails-beanstalk-env
 global:
+  application_name: WorkOutTracker
+  default_ec2_keyname: aws-eb
+  default_platform: 64bit Amazon Linux 2016.03 v2.1.2 running Ruby 2.3 (Passenger
+    Standalone)
+  default_region: us-west-2
   profile: eb-cli
+  sc: git
