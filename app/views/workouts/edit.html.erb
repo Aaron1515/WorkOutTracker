@@ -1,92 +1,69 @@
-
+<head>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+</head>
 
 <h1>Edit a workout for <%= @user.name.capitalize %></h1>
 
+<%= render 'form' %>
 
-
-  <%= form_for [@user, @workout] do |f| %>
-
-    <%= f.label :phase %>
-    <%= f.select(:phase, options_for_select([
-      [1,1],
-      [2,2],
-      [3,3],
-      [4,4]], selected: @workout.phase)) %>
-
-    <%= f.label :day %>
-    <%= f.select(:day, options_for_select([
-      [1,1],
-      [2,2],
-      [3,3],
-      [4,4]], selected: @workout.day)) %>
-
-    <%= f.label :name %>
-    <%= f.select(:name, options_for_select([
-      ['1-arm row(scap/core stability)','1-arm row(scap/core stability)'],
-      ['85% run(endurance)','85% run(endurance)'],
-      ['90% run(endurance)','90% run(endurance)'],
-      ['95% run(endurance)','95% run(endurance)'],
-      ['abs sequence 1','abs sequence 1'],
-      ['ankle mobility(complex 1)','ankle mobility(complex 1)'],
-      ['back squat(ankle/hip mobility)','back squat(ankle/hip mobility)'],
-      ['ball slams','ball slams'],
-      ['bent over row(scap/core stability)','bent over row(scap/core stability)'],
-      ['bulgarian split squat(hip mobility)','bulgarian split squat(hip mobility)'],
-      ['burpees(muscular endurance)','burpees(muscular endurance)'],
-      ['calve raises','calve raises'],
-      ['db front squat(ankle/hip mobility)','db front squat(ankle/hip mobility)'],
-      ['db shoulder press(scap stability)','db shoulder press(scap stability)'],
-      ['db snatch','db snatch'],
-      ['deadlift(posterior chain)','deadlift(posterior chain)'],
-      ['double unders(endurance)','double unders(endurance)'],
-      ['db thruster(compound)','db thruster(compound)'],
-      ['farmers carry','farmers carry'],
-      ['farmers hold','farmers hold'],
-      ['farmer walks(heavy)','farmer walks(heavy)'],
-      ['frog jumps','frog jumps'],
-      ['goblet squats','goblet squats'],
-      ['hollow rocks','hollow rocks'],
-      ['inverted row(scap stability)','inverted row(scap stability)'],
-      ['jump squats','jump squats'],
-      ['kb swing(hip mobility)','kb swing(hip mobility)'],
-      ['mtn climbers','mtn climbers'],
-      ['plank(core stability)','plank(core stability)'],
-      ['push press(gh mobility)','push press(gh mobility)'],
-      ['push-ups','push-ups'],
-      ['push-ups(stability/endurance)','push-ups(stability/endurance)'],
-      ['renegade rows(core stability)','renegade rows(core stability)'],
-      ['run','run'],
-      ['run(endurance)','run(endurance)'],
-      ['squats','squats'],
-      ['shoulder press(shoulder stability)','shoulder press(shoulder stability)'],
-      ['sit-ups','sit-ups'],
-      ['squat(ankle/hip mobility)','squat(ankle/hip mobility)'],
-      ['standing face-pulls','standing face-pulls'],
-      ['superman(posterior chain)','superman(posterior chain)'],
-      ['thursters','thursters'],
-      ['trx figure 4','trx figure 4'],
-      ['trx forward lunge','trx forward lunge'],
-      ['trx lateral lunges','trx lateral lunges'],
-      ['trx pidgeon stretch','trx pidgeon stretch'],
-      ['tuck jumps','tuck jumps'],
-      ['wall balls(compound)','wall balls(compound)']
-      ], selected: @workout.name))%>
-
-    <%= f.label :reps %>
-    <%= f.text_field :reps, required: true, selected: @workout.reps %>
-
-    <%= f.label :sets %>
-    <%= f.text_field :sets, required: true, placeholder: "Numbers" %>
-
-    <%= f.label :weight %>
-    <%= f.text_field :weight, required: true, placeholder: "Numbers / BW " %>
-
-    <%= f.label :rest %>
-    <%= f.text_field :rest, value: 0, required: true %>
-
-
-    <%= f.label :note %>
-    <%= f.text_field :note, placeholder: "Optional" %>
-
-    <%= f.submit "Update" %>
-  <% end %>
+<script>
+  $(function() {
+    var availableWorkouts = [
+      '1-arm row(scap/core stability)',
+      '1-arm row(scap/core stability)',
+      '85% run(endurance)',
+      '90% run(endurance)',
+      '95% run(endurance)',
+      'abs sequence 1',
+      'ankle mobility(complex 1)',
+      'back squat(ankle/hip mobility)',
+      'ball slams',
+      'bent over row(scap/core stability)',
+      'bulgarian split squat(hip mobility)',
+      'burpees(muscular endurance)',
+      'calve raises',
+      'db front squat(ankle/hip mobility)',
+      'db shoulder press(scap stability)',
+      'db snatch',
+      'deadlift(posterior chain)',
+      'double unders(endurance)',
+      'db thruster(compound)',
+      'farmers carry',
+      'farmers hold',
+      'farmer walks(heavy)',
+      'frog jumps',
+      'goblet squats',
+      'hollow rocks',
+      'inverted row(scap stability)',
+      'jump squats',
+      'kb swing(hip mobility)',
+      'mtn climbers',
+      'plank(core stability)',
+      'push press(gh mobility)',
+      'push-ups',
+      'push-ups(stability/endurance)',
+      'renegade rows(core stability)',
+      'run',
+      'run(endurance)',
+      'squats',
+      'shoulder press(shoulder stability)',
+      'sit-ups',
+      'squat(ankle/hip mobility)',
+      'standing face-pulls',
+      'superman(posterior chain)',
+      'thursters',
+      'trx figure 4',
+      'trx forward lunge',
+      'trx lateral lunges',
+      'trx pidgeon stretch',
+      'tuck jumps',
+      'wall balls(compound)',
+    ];
+    $( "#workout_name" ).autocomplete({
+      source: availableWorkouts
+    });
+  });
+  </script>

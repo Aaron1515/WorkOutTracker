@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="page-header">
+    <h1><small>Add a workout for</small> <%= @user.name.capitalize %></h1>
+  </div>
+
+
+
+  <%= form_for [@user, @workout] do |f| %>
+
+    <%= f.label :phase %>
+    <%= f.select(:phase, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4],
+      [5,5],
+      [6,6],
+      [7,7],
+      [8,8],
+      [9,9],
+      [10,10],
+      [11,11],
+      [12,12],
+      [13,13],
+      ])) %>
+
+
+    <%= f.label :day %>
+    <%= f.select(:day, options_for_select([
+      [1,1],
+      [2,2],
+      [3,3],
+      [4,4]])) %>
+
+    <br>
+    <br>
+    <p>Workout:
+    <%= f.text_field :name, placeholder: "Name" %>
+
+    <%= f.text_field :reps, required: true, placeholder: "Reps" %>
+
+    <%= f.text_field :sets, required: true, placeholder: "Sets" %>
+
+    <%= f.text_field :weight, required: true, placeholder: "Weight" %>
+    </p>
+
+    <br>
+    <p> Optional:
+    <%= f.label :rest %>
+    <%= f.text_field :rest, value: 0, required: true %>
+
+
+    <%= f.label :note %>
+    <%= f.text_field :note, placeholder: "Optional" %>
+    </p>
+    <br>
+    <%= f.submit "Submit" %>
+  <% end %>
