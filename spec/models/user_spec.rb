@@ -43,12 +43,11 @@ RSpec.describe User, type: :model do
 
   it "returns a contact's name as a string" do
     user = User.new(name: 'Joe')
-    expect(user.name).to eq 'Joe'
+    expect(user.name).to be_a_kind_of(String)
   end
   
   it "returns a contact's email as a string" do
         user = User.new(email: 'joe@joe.com')
-    expect(user.email).to eq 'joe@joe.com'
+    expect(user.email).to be_a_kind_of(String)
   end
-  
 end
