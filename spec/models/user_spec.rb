@@ -2,32 +2,77 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it "is valid with a name, email, and password" do
-    user = User.new(
-      name: 'Aaron',
-      email: 'aaron@gmail.com', 
-      password: 'password')
-    expect(user).to be_valid
+  describe 'Creating new user with valid info' do
+    let(:user) { User.new( name: 'Aaron', email: 'aaron@aaron.com',password: 'password') }
+
+    it 'save with name, email, password' do
+      expect(user.save).to equal(true)
+    end
+
+    it 'is valid with name equal to "Aaron"' do
+      expect(user.name).to include("Aaron")
+    end
+
+    it 'is valid with email equal to "aaron@aaron.com"' do
+      expect(user.email).to include("aaron@aaron.com")
+    end
+
+    it 'is valid with password equal to Hash String' do
+      expect(user.password).to be_a_kind_of (String)
+    end
+
+    it 'is valid with the password "password"' do
+      expect(user.password).to eq ('password')
+    end
+
+    it 'password is hash, has 60 chars encrypted' do
+        expect(user.password_digest.length).to equal(60)
+    end
+
+    it 'new user is an Object' do
+        expect(user).to be_a_kind_of(Object)
+    end
+
+    describe 'Testing for false positive' do
+
+      it 'is not false when saving new user with valid info' do
+        expect(user.save).to_not equal(false)
+      end
+
+      it 'password is not password1' do
+        expect(user.password).to_not equal("password1")
+      end
+
+      it 'new user is not Aarry' do
+        expect(user).to_not equal(Array)
+      end
+
+      it 'new user is not String' do
+        expect(user).to_not equal(String)
+      end
+    end
+
   end
 
+
   it "is invalid without a name" do
-    user = User.new(name: nil)
+    user = User.new(name: nil, email: 'aaron@aaron.com', password: 'password')
     user.valid?
     expect(user.errors[:name]).to include("can't be blank")
   end
-  
+
   it "is invalid without a password" do
     user = User.new(password: nil)
     user.valid?
     expect(user.errors[:password]).to include("can't be blank")
   end
-  
+
   it "is invalid without an email address" do
     user = User.new(email: nil)
     user.valid?
     expect(user.errors[:email]).to include("can't be blank")
   end
-  
+
   it "is invalid with a duplicate email address" do
     User.create(
       name: 'Joe',
@@ -45,7 +90,7 @@ RSpec.describe User, type: :model do
     user = User.new(name: 'Joe')
     expect(user.name).to be_a_kind_of(String)
   end
-  
+
   it "returns a contact's email as a string" do
         user = User.new(email: 'joe@joe.com')
     expect(user.email).to be_a_kind_of(String)
