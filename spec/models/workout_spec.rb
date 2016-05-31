@@ -1,10 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Workout, type: :model do
+
+  describe 'Workout to be valid' do
+
+    let(:workout) {Workout.new(name: 'bench press',
+      reps: 8,
+      sets: 4,
+      weight: '50',
+      completed: true,
+      phase: 1,
+      rest: 30,
+      user_id: 1,
+      day: 1,
+      note: 'note')}
+
+    it 'if Rspec is present.' do
+      expect(true).to be true
+    end
+
+  end
+
   it "is valid with a name, reps, sets, weight, completed, phase, rest, user_id, day, and note" do
     workout = Workout.new(
       name: 'bench press',
-      reps: 8, 
+      reps: 8,
       sets: 4,
       weight: '50',
       completed: true,
@@ -21,19 +41,19 @@ RSpec.describe Workout, type: :model do
     workout.valid?
     expect(workout.errors[:name]).to include("can't be blank")
   end
-  
+
   it "is invalid without a reps" do
     workout = Workout.new(reps: nil)
     workout.valid?
     expect(workout.errors[:reps]).to include("can't be blank")
   end
-  
+
   it "is invalid without a weight" do
     workout = Workout.new(weight: nil)
     workout.valid?
     expect(workout.errors[:weight]).to include("can't be blank")
   end
-  
+
   it "is invalid without a phase" do
     workout = Workout.new(phase: nil)
     workout.valid?
@@ -62,7 +82,7 @@ RSpec.describe Workout, type: :model do
     workout = Workout.new(name: 'Dips')
     expect(workout.name).to be_a_kind_of(String)
   end
-  
+
   it "returns reps as an integer" do
     workout = Workout.new(reps: 8)
     expect(workout.reps).to be_a_kind_of(Integer)
@@ -77,7 +97,7 @@ RSpec.describe Workout, type: :model do
     workout = Workout.new(weight: 'BW')
     expect(workout.weight).to be_a_kind_of(String)
   end
-  
+
   it "returns phase as an integer" do
         workout = Workout.new(phase: 8)
     expect(workout.phase).to be_a_kind_of(Integer)
