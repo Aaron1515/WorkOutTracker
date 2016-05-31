@@ -54,6 +54,23 @@ RSpec.describe User, type: :model do
 
   end
 
+# ActiveRecord Tests
+  describe 'ActiveRecord associations' do
+
+    it 'users has_many workouts' do
+      expect(User.reflect_on_association(:workouts).macro).to be (:has_many)
+    end
+
+    it 'users has workouts in plural_name' do
+      expect(User.reflect_on_association(:workouts).plural_name).to eq ("workouts")
+    end
+
+  end
+
+
+
+
+
 
   it "is invalid without a name" do
     user = User.new(name: nil, email: 'aaron@aaron.com', password: 'password')
