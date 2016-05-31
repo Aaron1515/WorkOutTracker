@@ -2,9 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Workout, type: :model do
 
+
+# Model test for data input
   describe 'Workout to be valid' do
 
-    let(:workout) {Workout.new(name: 'bench press',
+    let(:workout) {Workout.new(
+      name: 'bench press',
       reps: 8,
       sets: 4,
       weight: '50',
@@ -13,13 +16,31 @@ RSpec.describe Workout, type: :model do
       rest: 30,
       user_id: 1,
       day: 1,
-      note: 'note')}
+      note: 'note'
+    )}
 
-    it 'if Rspec is present.' do
+    it 'Rspec is present' do
       expect(true).to be true
     end
 
+    it 'workout to be saved to db' do
+      expect(workout.save).to be true
+    end
+
   end
+
+
+
+
+# ActiveRecord Tests
+  describe 'ActiveRecord associations' do
+
+    it 'workout belongs to users' do
+      expect(Workout.reflect_on_association(:user).macro).to be (:belongs_to)
+    end
+
+  end
+
 
   it "is valid with a name, reps, sets, weight, completed, phase, rest, user_id, day, and note" do
     workout = Workout.new(
