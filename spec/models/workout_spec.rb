@@ -39,6 +39,10 @@ RSpec.describe Workout, type: :model do
       expect(Workout.reflect_on_association(:user).macro).to be (:belongs_to)
     end
 
+    it 'workout has many user\'s in plural name' do
+      expect(Workout.reflect_on_association(:user).plural_name).to eq ("users")
+    end
+
   end
 
 
