@@ -65,9 +65,24 @@ RSpec.describe User, type: :model do
       expect(User.reflect_on_association(:workouts).plural_name).to eq ("workouts")
     end
 
+    it 'users has_many progresses' do
+      expect(User.reflect_on_association(:progresses).macro).to be (:has_many)
+    end
+
+    it 'users has progresses in plural_name' do
+      expect(User.reflect_on_association(:progresses).plural_name).to eq ("progresses")
+    end
+
+    it 'users has_many measurements' do
+      expect(User.reflect_on_association(:measurements).macro).to be (:has_many)
+    end
+
+    it 'users has measurements in plural_name' do
+      expect(User.reflect_on_association(:measurements).plural_name).to eq ("measurements")
+
+    end
+
   end
-
-
 
 
 
