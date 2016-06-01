@@ -33,6 +33,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_a_kind_of(Object)
     end
 
+
     describe 'Testing for false positive' do
 
       it 'is not false when saving new user with valid info' do
@@ -50,6 +51,7 @@ RSpec.describe User, type: :model do
       it 'new user is not String' do
         expect(user).to_not equal(String)
       end
+
     end
 
   end
