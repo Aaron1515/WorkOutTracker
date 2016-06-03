@@ -84,6 +84,9 @@ RSpec.describe User, type: :model do
 
     end
 
+
+    #add more test to model for through progress to measurment.
+
   end
 
 
