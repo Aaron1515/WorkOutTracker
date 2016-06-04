@@ -2,12 +2,7 @@
     <div class="container">
 
       <!-- Flash message when successfully updating/destroying a user -->
-      <% if flash[:success] %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-      <% elsif flash[:error] %>
-      <div class="alert alert-error"><%= flash[:error] %></div>
-      <% end %>
-      <!-- End of flash message -->
+      <%= render 'flash_message' %>
 
       <!-- Title of client -->
       <h1><%= @user.name.capitalize %>'s Progress</h1>
@@ -19,70 +14,13 @@
       <br>
       <br>
 
-      <!--    Show phase one by one if there is phase -->
-      <% if phases && phases.length > 0 %>
-        <% phases.each do |phase_num| %>
-          <table class="table table-striped">
-            <tr>
-              <th><a href="#"><h3>Phase <%= phase_num %><h3></a></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <% workout_for_phase = @workouts.where(phase: phase_num) %>
-
-            <!-- Show days one by one in each phase -->
-            <% days = [] %>
-            <% workout_for_phase.each do |workout| %>
-              <% if workout.day %>
-                <% days.push(workout.day) %>
-              <% end %>
-            <% end %>
-            <% days = days.uniq %>
-            <% days.sort! %>
-            <% days.each do |day| %>
-              <tr>
-                <th><a href="#">Day <%= day %></a></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>Name</th>
-                <th>Completed</th>
-                <th>Reps</th>
-                <th>Sets</th>
-                <th>Weight</th>
-                <th>Note</th>
-              </tr>
-              <% per_day_workouts = workout_for_phase.where(day: day) %>
-              <% per_day_workouts.each do |workout| %>
-                <tr>
-                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <%= link_to 'Delete', user_workout_path(@user, workout), method: :delete,
-                                     data: { confirm: 'Are you sure?'} %></td>
-                  <td><%= workout.completed ? "Yes" : "No" %></td>
-                  <td><%= workout.reps %></td>
-                  <td><%= workout.sets %></td>
-                  <td><%= workout.weight %></td>
-                  <td><%= workout.note %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </table>
-        <% end %>    <!-- End of day view -->
-      <% end %>  <!-- End of phase view -->
-
-
-      <%= link_to 'Back', users_path %>
-    </div>
+      <%= render 'admin_view_client_workouts', :locals => {:phases => phases, workouts: @workouts } %>
+ 
     <!-- End of admin view -->
 
 
 <% elsif %>
+
     <!-- Start of user's view -->
     <%= render 'client_show_heading' %>
 
@@ -90,12 +28,12 @@
 
     <%= render 'client_workouts', :locals => {:phases => phases, workouts: @workouts } %>
 
+    <!-- D3 graph for progress -->
+    <%= render 'graphs' %>
     
 
   <% end %>
 
-<!-- D3 graph for progress -->
-  <%= render 'graphs' %>
   
 
 
