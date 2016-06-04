@@ -33,6 +33,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_a_kind_of(Object)
     end
 
+
     describe 'Testing for false positive' do
 
       it 'is not false when saving new user with valid info' do
@@ -50,9 +51,45 @@ RSpec.describe User, type: :model do
       it 'new user is not String' do
         expect(user).to_not equal(String)
       end
+
     end
 
   end
+
+# ActiveRecord Tests
+  describe 'ActiveRecord associations' do
+
+    it 'users has_many workouts' do
+      expect(User.reflect_on_association(:workouts).macro).to be (:has_many)
+    end
+
+    it 'users has workouts in plural_name' do
+      expect(User.reflect_on_association(:workouts).plural_name).to eq ("workouts")
+    end
+
+    it 'users has_many progresses' do
+      expect(User.reflect_on_association(:progresses).macro).to be (:has_many)
+    end
+
+    it 'users has progresses in plural_name' do
+      expect(User.reflect_on_association(:progresses).plural_name).to eq ("progresses")
+    end
+
+    it 'users has_many measurements' do
+      expect(User.reflect_on_association(:measurements).macro).to be (:has_many)
+    end
+
+    it 'users has measurements in plural_name' do
+      expect(User.reflect_on_association(:measurements).plural_name).to eq ("measurements")
+
+    end
+
+
+    #add more test to model for through progress to measurment.
+
+  end
+
+
 
 
   it "is invalid without a name" do
