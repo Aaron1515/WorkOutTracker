@@ -9,18 +9,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    phases = phases(@user)
-    phases.sort!
+    @phases = phases(@user)
+    @phases.sort!
     if current_user.admin?
       @admin = current_user
       if @user.workouts
        @workouts = @user.workouts
-       render 'users/show', :locals => {:phases => phases, workouts: @workouts }
+       render 'users/show', :locals => {:phases => @phases, workouts: @workouts }
       end
     else
       @workouts = current_user.workouts
       # binding.pry
-      render 'users/show', :locals => {phases: phases, workouts: @workouts }
+      render 'users/show', :locals => {phases: @phases, workouts: @workouts }
     end
   end
 

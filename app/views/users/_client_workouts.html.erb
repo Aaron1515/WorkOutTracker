@@ -1,0 +1,39 @@
+<div id="glist">
+      <% @phases.each do |phase_num| %>
+
+        <h1>Phase : <%= phase_num %></h1>
+        <% phase_workout = @workouts.select {|workout| workout.phase == phase_num} %>
+
+        <% days = [] %>
+        <% phase_workout.each do |workout| %>
+          <% days.push(workout.day) %>
+        <% end %>
+        <% days = days.uniq %>
+        <% days.sort! %>
+        <% days.each do |day| %>
+          <h2> Day : <%= day %></h2>
+          <% day_workout = phase_workout.select {|workout| workout.day == day} %>
+          <% day_workout.each do |workout| %>
+            <% if workout.completed == false %>
+              <li class="list-group-item list-group-item-success">
+                <strong><%= workout.name %></strong>
+                <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
+              </li>
+            <% else %>
+              <li class="list-group-item list-group-item-success">
+                <strong><%= workout.name %></strong>
+              </li>
+            <% end %>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.reps %></span>Reps:
+            </li>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.sets %></span>Sets:
+            </li>
+            <li class="list-group-item">
+              <span class="badge"><%= workout.weight %></span>Weight:
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
