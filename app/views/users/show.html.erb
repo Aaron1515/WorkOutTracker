@@ -1,8 +1,9 @@
+<!-- Flash message when successfully creating/updating/destroying a workout or prevent client to view other users show page -->
+<%= render 'flash_message' %>
+
 <% if current_user && current_user.admin? %>
     <div class="container">
 
-      <!-- Flash message when successfully creating/updating/destroying a workout -->
-      <%= render 'flash_message' %>
 
       <!-- Title of client -->
       <h1><%= @user.name.capitalize %>'s Progress</h1>
@@ -20,7 +21,6 @@
 
 
 <% elsif %>
-    <%= render 'flash_message' %>
     <!-- Start of user's view -->
     <%= render 'client_show_heading' %>
 

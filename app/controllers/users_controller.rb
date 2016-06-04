@@ -9,11 +9,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @phases = phases(@user)
-    @phases.sort!
-    if current_user.admin?
+    @phases = phases(@user) if @user
+    # @phases.sort!
+    if @user.nil?
+      flash[:error] = "User doesn't exist!"  
+      redirect_to users_path
+
+    elsif current_user.admin?
       @admin = current_user
-      if @user.workouts
+      if @user.workouts && @user
        @workouts = @user.workouts
        render 'users/show', :locals => {:phases => @phases, workouts: @workouts }
       end
@@ -29,6 +33,7 @@ class UsersController < ApplicationController
       render 'users/show', :locals => {phases: @phases, workouts: @workouts }
     end
   end
+
 
   def new
   end
