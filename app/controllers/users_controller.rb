@@ -18,7 +18,8 @@ class UsersController < ApplicationController
        render 'users/show', :locals => {:phases => phases, workouts: @workouts }
       end
     else
-      workouts = current_user.workouts
+      @workouts = current_user.workouts
+      # binding.pry
       render 'users/show', :locals => {phases: phases, workouts: @workouts }
     end
   end
