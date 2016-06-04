@@ -42,23 +42,12 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <!-- If user logged in and there is a session id then show below -->
-            <% if session[:user_id] %>
+            <% if current_user %>
 
 
               <li><%= link_to "logout", {:controller=> "sessions", :action=> "destroy"}, method: :delete %></li>
 
-              <% if @admin && @admin.admin == true %>
-                <li><a href="/users">Clients</a></li>
-              <% end %>
-              <li><a href="/users/<%= session[:user_id] %>"><span class="glyphicon glyphicon-user"></span>  <%= @current_user.name %></a></li>
-
-            <% else %>
-
-              <li><a href="/users/new">Register</a></li>
-
-
-              <!-- Start modal here, and have it drop down in the middle of the page -->
-              <li><a href="/">Login</a></li>
+              <li><a href="/users/<%= session[:user_id] %>"><span class="glyphicon glyphicon-user"></span>  <%= current_user.name %></a></li>
 
             <% end %>
 

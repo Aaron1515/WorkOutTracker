@@ -1,3 +1,7 @@
+<% if current_user %>
+
+<% else %>
+
 <div id="sfimg"></div>
 <!-- change this div into a modal -->
 <center class="container center_div login">
@@ -14,6 +18,10 @@
       <button type="submit" class="btn btn-info">Sign in</button>
     </div>
     </form>
+
+    <a href="/users/new">Register</a>
   </center>
+
+<% end %>
 
 

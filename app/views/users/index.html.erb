@@ -1,5 +1,5 @@
 
-<% if @admin.admin == true %>
+<% if current_user && current_user.admin? %>
 
 <h1>All clients</h1>
 
