@@ -1,19 +1,19 @@
 class WorkoutsController < ApplicationController
 
   def index
-    @current_user = current_user
-    @workout = Workout.find_by(id: params[:id])
-    p @workout
+    # @current_user = current_user
+    # @workout = Workout.find_by(id: params[:id])
+    # p @workout
   end
 
   def show
-    @current_user = current_user
-    @workout = Workout.find_by(id: params[:id])
-    @workout
+    # @current_user = current_user
+    # @workout = Workout.find_by(id: params[:id])
+    # @workout
   end
 
   def new
-    @current_user = current_user
+    # @current_user = current_user
     @workout = Workout.new
     @user = User.find_by(id: params[:user_id])
     @workout.user_id = @user.id
@@ -34,8 +34,8 @@ class WorkoutsController < ApplicationController
   end
 
   def edit
-    current_user
-    if @current_user.admin == true
+    # current_user
+    if current_user.admin?
       @workout = Workout.find_by(id: params[:id])
       @user = User.find_by(id: params[:user_id])
     else
@@ -44,39 +44,36 @@ class WorkoutsController < ApplicationController
   end
 
   def update
-    current_user
-    # binding.pry
-    if @current_user.admin = true
-      # binding.pry
+    # if current_user.admin?
       if request.xhr?
         @workout = Workout.find_by(id: params[:id])
         @workout.update(completed: true)
         render :json=>true
       else
-        # binding.pry
         @workout = Workout.find_by(id: params[:id])
         @user = User.find_by(id: params[:user_id])
-        if @workout.update_attributes(workout_params)
+        if @workout.update(workout_params)
           flash[:success] = "Workout successfully updated!"
-          redirect_to user_path(@user.id)
+          redirect_to user_path(@user)
         else
           flash[:error] = "Your missing a field."
-          redirect_to edit_user_workout_path(@user)
+          redirect_to edit_user_workout_path(@user, @workout)
         end
       end
-      # binding.pry
-    end
+    # end
   end
 
   def destroy
-    @current_user = current_user
+    @workout = Workout.find_by(id: params[:id])
+    if @workout.destroy
+      flash[:success] = "Workout successfully deleted!"
+      redirect_to user_path
+    end
   end
 
   private
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
+
   def workout_params
-    params.require(:workout).permit(:name, :sets, :reps, :weight, :rest, :phase, :day)
+    params.require(:workout).permit(:name, :sets, :reps, :weight, :completed, :rest, :phase, :day, :note, :user_id)
   end
 end

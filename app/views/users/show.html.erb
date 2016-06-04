@@ -1,8 +1,8 @@
-<% if session[:user_id] %>
-  <% if @admin && @admin.admin == true %>
+<% if current_user %>
+  <% if current_user && current_user.admin? %>
     <div class="container">
 
-      <!-- Create flash when successfull in creating workout -->
+      <!-- Create flash when successfully in creating workout -->
       <% if flash[:success] %>
       <div class="alert alert-success"><%= flash[:success] %></div>
       <% elsif flash[:error] %>
@@ -63,7 +63,8 @@
               <% per_day_workouts = workout_for_phase.where(day: day) %>
               <% per_day_workouts.each do |workout| %>
                 <tr>
-                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <a href="">Delete</a></td>
+                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <%= link_to 'Delete', user_workout_path(@user, workout), method: :delete,
+                                     data: { confirm: 'Are you sure?'} %></td>
                   <td><%= workout.completed ? "Yes" : "No" %></td>
                   <td><%= workout.reps %></td>
                   <td><%= workout.sets %></td>
@@ -89,7 +90,7 @@
 
 
 
-  <% else %>
+  <% elsif current_user %>
     <!-- Start of user's view -->
     <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
     Here is Your Progress:
@@ -116,43 +117,9 @@
         </div>
       </center>
     </ul>
-    <div id="mlist">
-      <table id="measurement" class="table table-striped">
-        <tr>
-          <th>Measurements</th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Item</th>
-          <th>Status</th>
-        </tr>
 
-        <tr> <!-- Add measurement to iterate last measurements -->
-          <td>Weight:</td>
-          <td>50 LB</td>
-        </tr>
-        <tr>
-          <td>Body Fat:</td>
-          <td>12 %</td>
-        </tr>
-        <tr>
-          <td>Dead Lift:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Bench Press:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Squat:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Lat Pull Down:</td>
-          <td>12 LB</td>
-        </tr>
-      </table>
-    </div>
+    <%= render 'measurements' %>
+
     <div id="glist">
       <% phases.each do |phase_num| %>
 

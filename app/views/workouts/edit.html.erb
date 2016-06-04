@@ -5,6 +5,14 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 
+      <!-- Create flash when successfully in creating workout -->
+      <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+      <% elsif flash[:error] %>
+      <div class="alert alert-error"><%= flash[:error] %></div>
+      <% end %>
+      <!-- End of flash message -->
+
 <h1>Edit a workout for <%= @user.name.capitalize %></h1>
 
 <%= render 'form' %>
