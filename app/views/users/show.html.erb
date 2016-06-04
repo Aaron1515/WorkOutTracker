@@ -1,8 +1,7 @@
-<% if current_user %>
-  <% if current_user && current_user.admin? %>
+<% if current_user && current_user.admin? %>
     <div class="container">
 
-      <!-- Create flash when successfully in creating workout -->
+      <!-- Flash message when successfully updating/destroying a user -->
       <% if flash[:success] %>
       <div class="alert alert-success"><%= flash[:success] %></div>
       <% elsif flash[:error] %>
@@ -83,40 +82,9 @@
     <!-- End of admin view -->
 
 
-
-
-
-
-
-
-
-  <% elsif current_user %>
+<% elsif %>
     <!-- Start of user's view -->
-    <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
-    Here is Your Progress:
-    </center><br><br>
-    <ul class="list-group">
-      <center>
-        <!-- Single button -->
-        <div class="btn-group">
-          <button id="show-goals" type="button" class="btn btn-default">Workouts</button>
-          <button type="button" class="btn btn-default">Photos</button>
-          <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Day <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Monday</a></li>
-            <li><a href="#">Tuesday</a></li>
-            <li><a href="#">Wednesday</a></li>
-            <li><a href="#">Thursday</a></li>
-            <li><a href="#">Friday</a></li>
-            <li><a href="#">Saturday</a></li>
-            <li><a href="#">Sunday</a></li>
-          </ul>
-        </div>
-      </center>
-    </ul>
+    <%= render 'client_show_heading' %>
 
     <%= render 'measurements' %>
 
@@ -162,12 +130,10 @@
 
   <% end %>
 
-
+<!-- D3 graph for progress -->
   <%= render 'graphs' %>
   
 
-<% else %>
-  Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
-<% end %>
+
 
 
