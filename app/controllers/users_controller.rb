@@ -18,8 +18,14 @@ class UsersController < ApplicationController
        render 'users/show', :locals => {:phases => @phases, workouts: @workouts }
       end
     else
+      # Prevents clients to see other client's data###################
+      unless session[:user_id] == @user.id
+        flash[:error] = "You don't have access!"
+        redirect_to user_path(session[:user_id])
+      return
+      end
+      #################################################
       @workouts = current_user.workouts
-      # binding.pry
       render 'users/show', :locals => {phases: @phases, workouts: @workouts }
     end
   end
