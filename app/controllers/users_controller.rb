@@ -12,10 +12,11 @@ class UsersController < ApplicationController
     @phases = phases(@user) if @user
     # @phases.sort!
     if @user.nil?
-      flash[:error] = "User doesn't exist!"  
-      if current_user.admin?
+       if current_user.admin?
+        flash[:error] = "User doesn't exist!" 
         redirect_to users_path 
       else
+        flash[:error] = "You don't have access!" 
         redirect_to user_path(session[:user_id])
       end
 
