@@ -13,7 +13,11 @@ class UsersController < ApplicationController
     # @phases.sort!
     if @user.nil?
       flash[:error] = "User doesn't exist!"  
-      redirect_to users_path
+      if current_user.admin?
+        redirect_to users_path 
+      else
+        redirect_to user_path(session[:user_id])
+      end
 
     elsif current_user.admin?
       @admin = current_user
