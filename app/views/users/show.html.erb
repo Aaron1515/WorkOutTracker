@@ -117,43 +117,9 @@
         </div>
       </center>
     </ul>
-    <div id="mlist">
-      <table id="measurement" class="table table-striped">
-        <tr>
-          <th>Measurements</th>
-          <th></th>
-        </tr>
-        <tr>
-          <th>Item</th>
-          <th>Status</th>
-        </tr>
 
-        <tr> <!-- Add measurement to iterate last measurements -->
-          <td>Weight:</td>
-          <td>50 LB</td>
-        </tr>
-        <tr>
-          <td>Body Fat:</td>
-          <td>12 %</td>
-        </tr>
-        <tr>
-          <td>Dead Lift:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Bench Press:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Squat:</td>
-          <td>12 LB</td>
-        </tr>
-        <tr>
-          <td>Lat Pull Down:</td>
-          <td>12 LB</td>
-        </tr>
-      </table>
-    </div>
+    <%= render 'measurements' %>
+
     <div id="glist">
       <% phases.each do |phase_num| %>
 
