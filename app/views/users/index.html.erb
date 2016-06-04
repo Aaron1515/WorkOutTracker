@@ -1,13 +1,8 @@
-
 <% if current_user && current_user.admin? %>
 
-      <!-- Create flash when successfully in creating workout -->
-      <% if flash[:success] %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-      <% elsif flash[:error] %>
-      <div class="alert alert-error"><%= flash[:error] %></div>
-      <% end %>
-      <!-- End of flash message -->
+  <!-- Flash message when successfully updating/destroying a user -->
+  <%= render 'flash_message' %>
+  <!-- End of flash message -->
 
 <h1>All clients</h1>
 
@@ -32,6 +27,4 @@
 <% end %>
 </table>
 
-<% else %>
-  Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
