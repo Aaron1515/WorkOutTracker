@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:user][:email])
 
     if @user.update_attributes(user_params)
+      flash[:success] = "User successfully updated!"
       redirect_to users_path
     else
       redirect_to edit_user_path(@user)
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
     client = User.find_by(id: params[:id])
     if current_user.admin?
       if client.destroy
+        flash[:success] = "User successfully deleted!"
         redirect_to users_path
       else
         redirect_to users_path
