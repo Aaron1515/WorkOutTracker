@@ -5,9 +5,11 @@
 <!-- change this div into a modal -->
 <center class="container center_div login">
   
-  <%= render 'flash_message' %>
   
   <form class="form-inline" action="/" method="post">
+    
+    <%= render 'flash_message' %>
+    
     <div class="form-group col-xs-12 col-md-4 col-lg-4">
       <label class="sr-only" for="exampleInputEmail3">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="user[email]">
