@@ -32,7 +32,21 @@ RSpec.describe User, type: :model do
     it 'new user is an Object' do
         expect(user).to be_a_kind_of(Object)
     end
+      it "DB has aaron@aaron.com as user" do
+        user.save
+        new_user = User.find_by(email: "aaron@aaron.com")
+        expect(new_user.email).to eq("aaron@aaron.com")
+      end
 
+      it "DB changed by 1 when creating user" do
+        expect{user.save}.to change(User,:count).by(1)
+      end
+
+      it "DB's last entry is aaron@aaron.com" do
+        user.save
+        last_user = User.last
+        expect(last_user.email).to eq("aaron@aaron.com")
+      end
 
     describe 'Testing for false positive' do
 
