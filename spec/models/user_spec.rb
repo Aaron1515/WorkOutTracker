@@ -85,6 +85,25 @@ RSpec.describe User, type: :model do
     end
 
 
+    describe 'Save data' do
+
+      let(:user) {User.new}
+      it 'is invalid when only name is present' do
+        user.name = "Aaron"
+        expect(user.save).to equal false
+      end
+
+      it 'is invalid when only email is present' do
+        user.email = "Aaron@aaron.com"
+        expect(user.save).to equal false
+      end
+
+      it 'is invalid when only password is present' do
+        user.password = "password"
+        expect(user.save).to equal false
+      end
+
+    end
     #add more test to model for through progress to measurment.
 
   end
