@@ -3,13 +3,13 @@ class WorkoutsController < ApplicationController
   def index
     @current_user = current_user
     @workout = Workout.find_by(id: params[:id])
-    p @workout
+    # p @workout
   end
 
   def show
     @current_user = current_user
     @workout = Workout.find_by(id: params[:id])
-    @workout
+    # @workout
   end
 
   def new
