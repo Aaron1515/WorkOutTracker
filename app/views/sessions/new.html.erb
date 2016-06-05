@@ -1,10 +1,7 @@
-<% if current_user %>
-
-<% else %>
-<div id="sfimg">
+<div class="sfimg">
 <!-- change this div into a modal -->
 <div class="div-container">
-  <img id="logo" src="http://previews.123rf.com/images/marrishuanna/marrishuanna1511/marrishuanna151100091/48473886-vector-emblem-logo-for-the-sports-center-hand-with-a-dumbbell-on-a-white-background-Stock-Vector.jpg" height="100px" width="100px">
+  <img class="logo" src="http://previews.123rf.com/images/marrishuanna/marrishuanna1511/marrishuanna151100091/48473886-vector-emblem-logo-for-the-sports-center-hand-with-a-dumbbell-on-a-white-background-Stock-Vector.jpg" height="100px" width="100px">
   <form action="/" method="post">
     
     <%= render 'flash_message' %>
@@ -25,6 +22,6 @@
   </div>
 
 </div>
-<% end %>
+
 
 

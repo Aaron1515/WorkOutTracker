@@ -1,7 +1,7 @@
 <div id="glist">
       <% @phases.each do |phase_num| %>
 
-        <h1>Phase : <%= phase_num %></h1>
+        <h1>Phase  <%= phase_num %></h1>
         <% phase_workout = @workouts.select {|workout| workout.phase == phase_num} %>
 
         <% days = [] %>
@@ -11,7 +11,7 @@
         <% days = days.uniq %>
         <% days.sort! %>
         <% days.each do |day| %>
-          <h2> Day : <%= day %></h2>
+          <h2> Day <%= day %></h2>
           <% day_workout = phase_workout.select {|workout| workout.day == day} %>
           <% day_workout.each do |workout| %>
             <% if workout.completed == false %>

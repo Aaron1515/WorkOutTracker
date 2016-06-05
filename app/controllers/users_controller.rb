@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @phases = phases(@user) if @user
-    # @phases.sort!
+    @phases.sort!
     if @user.nil?
        if current_user.admin?
         flash[:error] = "User doesn't exist!" 
