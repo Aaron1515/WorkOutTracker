@@ -3,25 +3,21 @@
 
      <div class="profile-container">
     
-    <img class="avatar" src="https://avatars0.githubusercontent.com/u/15719821?v=3&s=460" height="500px" width="500px">
+    <img class="avatar" src="http://fitnesssf.com/wp-content/uploads/2014/09/fsf_web.trainers_soma_eddyAguirre111714.jpg" height="500px" width="500px">
 
     <br>
 
     <strong><%= current_user.name %></strong>
     </div> 
 
-    <div align="center">Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
-    Here is Your Progress:
-    </div>    
+
     <br><br>
 
     <ul class="list-group">
       <center>
         <!-- Single button -->
         <div class="btn-group">
-          <button id="show-goals" type="button" class="btn btn-default">Workouts</button>
-          <button type="button" class="btn btn-default">Photos</button>
-          <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
+          <a href="/users" class="btn btn-default">Clients</a>
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-user"></span>  <%= current_user.name %> <span class="caret"></span>
           </button>
@@ -31,4 +27,3 @@
         </div>
       </center>
     </ul>
-    
