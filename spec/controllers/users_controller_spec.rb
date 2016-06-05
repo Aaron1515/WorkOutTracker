@@ -2,20 +2,21 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-  # describe 'Get #index' do
-  #     context 'when user is logged in' do
-  #     with :user
-  #     before do
-  #       sign_in user
-  #       get :index
-  #     end
-  #     it { is_expected.to respond_with :ok }
-  #     it { is_expected.to respond_with_content_type :html }
-  #     it { is_expected.to render_with_layout :application }
-  #     it { is_expected.to render_template :index }
-  #   end
+  describe 'Get #index' do
+  end
 
-  # end
 
+  describe "POST #create" do
+
+    let(:user) { User.new( name: 'Aaron', email: 'aaron@aaron.com',password: 'password') }
+
+    context "with valid attributes" do
+      it "saves the new post" do
+        expect{user.save}.to change(User,:count).by(1)
+      end
+    end
+
+  end
 
 end
+
