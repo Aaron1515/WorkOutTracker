@@ -1,5 +1,10 @@
 <br>
-<form class="form-horizontal" action='/users' method="POST">
+<form class="form-horizontal" action='/users' method="POST" enctype="multipart/form-data">
+
+  <label for="file">Filename:</label>
+    <input type="file" name="file" id="file" />
+
+    
   <fieldset class='col-sm-10 col-sm-offset-1'>
     <div id="legend">
       <legend class="">Register</legend>
