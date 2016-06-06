@@ -1,37 +1,26 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :require_user, only: [:index, :show]
+  before_action :require_admin, only: [:edit, :destroy]
 
   def index
-    current_user
-    @user = User.find_by(id: session[:user_id])
-    if session[:user_id]
-      @admin = User.find_by(id: session[:user_id])
-      if @admin.admin == true
-        @users = User.where(admin: false)
-      else
-        redirect_to new_user_path
-      end
-    else
-      redirect_to new_user_path
-    end
+    @users = User.where(admin: false)
   end
 
   def show
-    current_user
     @user = User.find_by(id: params[:id])
-    # user = User.find_by(id: session[:user_id])
     phases = phases(@user)
     phases.sort!
-    if @current_user.admin == true
-      @admin = @current_user
+    if current_user.admin?
+      @admin = current_user
       if @user.workouts
        @workouts = @user.workouts
-       render 'users/show', :locals => {:phases => phases }
+       render 'users/show', :locals => {:phases => phases, workouts: @workouts }
       end
     else
-      @user = @current_user
-      workouts = @current_user.workouts
-      render 'users/show', :locals => {phases: phases, workouts: workouts }
+      @workouts = current_user.workouts
+      # binding.pry
+      render 'users/show', :locals => {phases: phases, workouts: @workouts }
     end
   end
 
@@ -52,35 +41,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-    current_user
-    if @current_user.admin == true
       @user = User.find_by(id: params[:id])
-    else
-      redirect_to @current_user
-    end
   end
 
   def update
-    @admin = User.find_by(id: session[:user_id])
+    @user = User.find_by(email: params[:user][:email])
 
-    if @admin.admin == true
-      @user = User.find_by(email: params[:user][:email])
-
-      if @user.update_attributes(user_params)
-        redirect_to users_path
-      else
-        redirect_to edit_user_path(@user)
-      end
+    if @user.update_attributes(user_params)
+      flash[:success] = "User successfully updated!"
+      redirect_to users_path
     else
-      redirect_to new_user_path
+      redirect_to edit_user_path(@user)
     end
   end
 
   def destroy
-    current_user
     client = User.find_by(id: params[:id])
-    if @current_user.admin == true
+    if current_user.admin?
       if client.destroy
+        flash[:success] = "User successfully deleted!"
         redirect_to users_path
       else
         redirect_to users_path
@@ -96,17 +75,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
   def phases(user)
-  phase_collection = []
-  user.workouts.each do |workout|
-    phase_collection.push(workout.phase)
-    phase_collection = phase_collection.uniq
-  end
-  return phase_collection
+    phase_collection = []
+    user.workouts.each do |workout|
+      phase_collection.push(workout.phase)
+      phase_collection = phase_collection.uniq
+    end
+    return phase_collection
   end
 
 end
