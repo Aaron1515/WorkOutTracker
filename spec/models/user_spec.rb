@@ -32,10 +32,10 @@ RSpec.describe User, type: :model do
     it 'new user is an Object' do
         expect(user).to be_a_kind_of(Object)
     end
-      it "DB has aaron@aaron.com as user" do
+      it "DB has san@san.com as user" do
         user.save
-        new_user = User.find_by(email: "aaron@aaron.com")
-        expect(new_user.email).to eq("aaron@aaron.com")
+        new_user = User.find_by(email: "san@san.com")
+        expect(new_user.email).to eq("san@san.com")
       end
 
       it "DB changed by 1 when creating user" do
