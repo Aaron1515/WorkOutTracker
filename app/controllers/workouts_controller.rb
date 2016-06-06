@@ -1,13 +1,16 @@
 class WorkoutsController < ApplicationController
 
   def index
-    @current_user = current_user
+    # @current_user =
+    current_user
     @workout = Workout.find_by(id: params[:id])
   end
 
   def show
-    binding.pry
-    @current_user = current_user
+
+
+    # @current_user =
+    current_user
     @workout = Workout.find_by(id: params[:id])
 
     # @current_user = current_user
