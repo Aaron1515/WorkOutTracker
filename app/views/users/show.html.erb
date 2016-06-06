@@ -1,14 +1,11 @@
-<% if current_user %>
-  <% if current_user && current_user.admin? %>
+<!-- Flash message when successfully creating/updating/destroying a workout or prevent client to view other users show page -->
+<%= render 'flash_message' %>
+
+<% if current_user && current_user.admin? %>
+    <%= render 'admin_nav' %>
+
     <div class="container">
 
-      <!-- Create flash when successfully in creating workout -->
-      <% if flash[:success] %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-      <% elsif flash[:error] %>
-      <div class="alert alert-error"><%= flash[:error] %></div>
-      <% end %>
-      <!-- End of flash message -->
 
       <!-- Title of client -->
       <h1><%= @user.name.capitalize %>'s Progress</h1>
@@ -20,167 +17,26 @@
       <br>
       <br>
 
-      <!--    Show phase one by one if there is phase -->
-      <% if phases && phases.length > 0 %>
-        <% phases.each do |phase_num| %>
-          <table class="table table-striped">
-            <tr>
-              <th><a href="#"><h3>Phase <%= phase_num %><h3></a></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <% workout_for_phase = @workouts.where(phase: phase_num) %>
-
-            <!-- Show days one by one in each phase -->
-            <% days = [] %>
-            <% workout_for_phase.each do |workout| %>
-              <% if workout.day %>
-                <% days.push(workout.day) %>
-              <% end %>
-            <% end %>
-            <% days = days.uniq %>
-            <% days.sort! %>
-            <% days.each do |day| %>
-              <tr>
-                <th><a href="#">Day <%= day %></a></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-                <th>Name</th>
-                <th>Completed</th>
-                <th>Reps</th>
-                <th>Sets</th>
-                <th>Weight</th>
-                <th>Note</th>
-              </tr>
-              <% per_day_workouts = workout_for_phase.where(day: day) %>
-              <% per_day_workouts.each do |workout| %>
-                <tr>
-                  <td><%= workout.name %><%= "   " %><%= link_to "Edit", edit_user_workout_path(@user, workout) %> | <%= link_to 'Delete', user_workout_path(@user, workout), method: :delete,
-                                     data: { confirm: 'Are you sure?'} %></td>
-                  <td><%= workout.completed ? "Yes" : "No" %></td>
-                  <td><%= workout.reps %></td>
-                  <td><%= workout.sets %></td>
-                  <td><%= workout.weight %></td>
-                  <td><%= workout.note %></td>
-                </tr>
-              <% end %>
-            <% end %>
-          </table>
-        <% end %>    <!-- End of day view -->
-      <% end %>  <!-- End of phase view -->
-
-
-      <%= link_to 'Back', users_path %>
-    </div>
+      <%= render 'admin_view_client_workouts', :locals => {:phases => phases, workouts: @workouts } %>
+ 
     <!-- End of admin view -->
 
 
-
-
-
-
-
-
-
-  <% elsif current_user %>
+<% elsif %>
     <!-- Start of user's view -->
-    <center>Congratulations <strong><%= @user.name.capitalize %></strong> For Making It This Far!<br>
-    Here is Your Progress:
-    </center><br><br>
-    <ul class="list-group">
-      <center>
-        <!-- Single button -->
-        <div class="btn-group">
-          <button id="show-goals" type="button" class="btn btn-default">Workouts</button>
-          <button type="button" class="btn btn-default">Photos</button>
-          <button id="show-measurements" type="button" class="btn btn-default">Measurements</button>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Day <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Monday</a></li>
-            <li><a href="#">Tuesday</a></li>
-            <li><a href="#">Wednesday</a></li>
-            <li><a href="#">Thursday</a></li>
-            <li><a href="#">Friday</a></li>
-            <li><a href="#">Saturday</a></li>
-            <li><a href="#">Sunday</a></li>
-          </ul>
-        </div>
-      </center>
-    </ul>
+    <%= render 'client_show_heading' %>
 
     <%= render 'measurements' %>
 
-    <div id="glist">
-      <% phases.each do |phase_num| %>
+    <%= render 'client_workouts', :locals => {:phases => phases, workouts: @workouts } %>
 
-        <h1>Phase : <%= phase_num %></h1>
-        <% phase_workout = workouts.select {|workout| workout.phase == phase_num} %>
-
-        <% days = [] %>
-        <% phase_workout.each do |workout| %>
-          <% days.push(workout.day) %>
-        <% end %>
-        <% days = days.uniq %>
-        <% days.sort! %>
-        <% days.each do |day| %>
-          <h2> Day : <%= day %></h2>
-          <% day_workout = phase_workout.select {|workout| workout.day == day} %>
-          <% day_workout.each do |workout| %>
-            <% if workout.completed == false %>
-              <li class="list-group-item list-group-item-success">
-                <strong><%= workout.name %></strong>
-                <input type="submit" value="Complete" class="btn-xs btn-success pull-right wobtn" name="<%= workout.user_id %>" id="<%= workout.id %>">
-              </li>
-            <% else %>
-              <li class="list-group-item list-group-item-success">
-                <strong><%= workout.name %></strong>
-              </li>
-            <% end %>
-            <li class="list-group-item">
-              <span class="badge"><%= workout.reps %></span>Reps:
-            </li>
-            <li class="list-group-item">
-              <span class="badge"><%= workout.sets %></span>Sets:
-            </li>
-            <li class="list-group-item">
-              <span class="badge"><%= workout.weight %></span>Weight:
-            </li>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
+    <!-- D3 graph for progress -->
+    <%= render 'graphs' %>
+    
   <% end %>
 
+  
 
-  <!-- D3 graph for progress -->
-  <!-- Graph out weight -->
-  <hr>
-  <div class="container">
-  <h1 class="center">Weight</h1>
-  <svg id="vis_weight" class="svg_charts"></svg>
 
-  <script type="text/javascript">graphOutWeight();</script>
-
-  <!-- Graph out body fat -->
-  <hr>
-  <h1 class="center">Body Fat</h1>
-  <svg id="vis_body_fat" class="svg_charts"></svg>
-  <script type="text/javascript">graphOutBodyFat();</script>
-  </div>
-
-<% else %>
-  Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
-<% end %>
 
 

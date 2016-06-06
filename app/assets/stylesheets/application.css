@@ -15,30 +15,106 @@
  *= require_self
  */
 
-
-#sfimg {
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-bottom: 5px;
-}
-
-body {
-    padding-top: 50px;
-}
-
-#sfimg{
- height: 800px;
- width: 100%;
-
-  background-image: url("http://fitnesssf.com/wp-content/uploads/2014/08/fsf_locationBanner.marin_010816.jpg");
+.splash {
+  margin: 0 auto;
+  background-image: url("http://thefourpercent.com/wp-content/uploads/2015/07/SJ-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.login{
-  margin-top: -40%;
+.cover {
+  margin: 0 auto;
+  background-image: url("http://thefourpercent.com/wp-content/uploads/2015/07/SJ-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 340px;
+  margin-top: 0px;
+  width: auto;
+  /*position: relative;*/
+  margin-bottom: 5px;
 }
+
+/*body {
+    padding-top: 50px;
+}*/
+
 
 #mlist{
   display: none;
+}
+
+.div-container {
+  width: 400px;
+  height: 350px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(52, 73, 94, 0.7);
+  border-radius: 4px;
+  margin-top: 150px;
+}
+.profile-container {
+  width: auto;
+  height: 150px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(52, 73, 94, 0.7);
+  margin-bottom: 5px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-bottom: 30px;
+  border-radius: 60px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  margin-bottom: 30px;
+  border-radius: 60px;
+  margin: 0 auto;
+  text-align: center;
+  /*position: absolute;*/
+}
+
+input[type="email"], input[type="password"] {
+  height: 45px;
+  width: 300px;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px; 
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding-left: 40px;
+}
+
+form-input::before {
+  content: "\f007";
+  position: absolute;
+  font-size: 30px;
+  font-family: "FontAwesome";
+  background-color: #fff;
+  padding-top: 7px;
+  font-size: 35px;
+}
+
+.form-input:last-child::before {
+  content: "\f023";
+}
+
+.btn-login {
+  padding: 15px 30px;
+  color: #fff;
+  border: none;
+  background-color: #2ECC71;
+  border-radius: 4px;  
+  /*border-bottom: 4px solid #27AE60;*/
+  margin-bottom: 20px;
+}
+
+#reg {
+  color: #fff;
 }

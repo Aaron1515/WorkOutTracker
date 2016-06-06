@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
           redirect_to(@user)
         end
       else
+        flash[:error] = "Please login again!"
         redirect_to root_path
       end
     else
