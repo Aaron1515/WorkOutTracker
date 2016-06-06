@@ -1,14 +1,9 @@
-
 <% if current_user && current_user.admin? %>
 
-      <!-- Create flash when successfully in creating workout -->
-      <% if flash[:success] %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-      <% elsif flash[:error] %>
-      <div class="alert alert-error"><%= flash[:error] %></div>
-      <% end %>
-      <!-- End of flash message -->
-
+  <!-- Flash message when successfully updating/destroying a user -->
+  <%= render 'flash_message' %>
+  <!-- End of flash message -->
+<%= render 'admin_nav' %>
 <h1>All clients</h1>
 
 <table class="table table-striped">
@@ -22,16 +17,19 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.name.capitalize %></td>
+    <td><%= link_to "#{user.name.capitalize}", user %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete,
-                                     data: { confirm: 'Are you sure?'} %></td>
+    <td><%= link_to edit_user_path(user) do %>
+          <i class="glyphicon glyphicon-pencil"></i>
+        <% end %>
+    </td>
+    <td><%= link_to user, method: :delete,
+                          data: { confirm: 'Are you sure?'} do %>
+          <i class="glyphicon glyphicon-remove"></i>
+        <% end %>                    
+    </td>
   </tr>
 <% end %>
 </table>
 
-<% else %>
-  Please <a href="/">Log in</a> or <a href="/users/new">Register</a>
 <% end %>
