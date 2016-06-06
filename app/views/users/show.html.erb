@@ -18,11 +18,11 @@
       <br>
 
       <%= render 'admin_view_client_workouts', :locals => {:phases => phases, workouts: @workouts } %>
- 
+
     <!-- End of admin view -->
 
 
-<% elsif %>
+<% elsif current_user && current_user.admin != true %>
     <!-- Start of user's view -->
     <%= render 'client_show_heading' %>
 
@@ -32,10 +32,10 @@
 
     <!-- D3 graph for progress -->
     <%= render 'graphs' %>
-    
+
   <% end %>
 
-  
+
 
 
 
