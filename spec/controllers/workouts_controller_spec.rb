@@ -25,6 +25,9 @@ RSpec.describe WorkoutsController, type: :controller do
     end
   end
 
+
+
+
   describe 'Get #new' do
   end
 
