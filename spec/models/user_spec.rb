@@ -3,18 +3,18 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   describe 'Creating new user with valid info' do
-    let(:user) { User.new( name: 'Aaron', email: 'aaron@aaron.com',password: 'password') }
+    let(:user) { User.new( name: 'san', email: 'san@san.com',password: 'password') }
 
     it 'save with name, email, password' do
       expect(user.save).to equal(true)
     end
 
-    it 'is valid with name equal to "Aaron"' do
-      expect(user.name).to include("Aaron")
+    it 'is valid with name equal to "san"' do
+      expect(user.name).to include("san")
     end
 
-    it 'is valid with email equal to "aaron@aaron.com"' do
-      expect(user.email).to include("aaron@aaron.com")
+    it 'is valid with email equal to "san@san.com"' do
+      expect(user.email).to include("san@san.com")
     end
 
     it 'is valid with password equal to Hash String' do
@@ -45,7 +45,7 @@ RSpec.describe User, type: :model do
       it "DB's last entry is aaron@aaron.com" do
         user.save
         last_user = User.last
-        expect(last_user.email).to eq("aaron@aaron.com")
+        expect(last_user.email).to eq("san@san.com")
       end
 
     describe 'Testing for false positive' do
