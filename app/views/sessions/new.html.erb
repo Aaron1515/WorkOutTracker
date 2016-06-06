@@ -1,27 +1,27 @@
-<% if current_user %>
-
-<% else %>
-
-<div id="sfimg"></div>
+<div class="sfimg">
 <!-- change this div into a modal -->
-<center class="container center_div login">
-  <form class="form-inline" action="/" method="post">
-    <div class="form-group col-xs-12 col-md-4 col-lg-4">
-      <label class="sr-only" for="exampleInputEmail3">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="user[email]">
+<div class="div-container">
+  <img class="logo" src="http://previews.123rf.com/images/marrishuanna/marrishuanna1511/marrishuanna151100091/48473886-vector-emblem-logo-for-the-sports-center-hand-with-a-dumbbell-on-a-white-background-Stock-Vector.jpg" height="100px" width="100px">
+  <form action="/" method="post">
+    
+    <%= render 'flash_message' %>
+    
+    <div class="form-input">
+      <input type="email" placeholder="Email" name="user[email]">
     </div>
-    <div class="form-group col-xs-12 col-md-4 col-lg-4">
-      <label class="sr-only" for="exampleInputPassword3">Password</label>
-      <input type="password" class="form-control " id="exampleInputPassword3" placeholder="Password" name="user[password]">
+    
+    <div class="form-input">
+      <input type="password" placeholder="Password" name="user[password]">
     </div>
-    <div class="col-xs-12 col-md-4 col-lg-4">
-      <button type="submit" class="btn btn-info">Sign in</button>
+    <div class="">
+      <input type="submit" class="btn-login" value="Log in"</input>
     </div>
     </form>
 
-    <a href="/users/new">Register</a>
-  </center>
+    <a id="reg" href="/users/new">Register</a>
+  </div>
 
-<% end %>
+</div>
+
 
 

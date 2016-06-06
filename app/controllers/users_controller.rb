@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :require_user, only: [:index, :show]
-  before_action :require_admin, only: [:edit, :destroy]
+  before_action :require_user, only: [:show]
+  before_action :require_admin, only: [:index, :edit, :destroy]
 
   def index
     @users = User.where(admin: false)
@@ -9,20 +9,36 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    phases = phases(@user)
-    phases.sort!
-    if current_user.admin?
+    @phases = phases(@user) if @user
+    @phases.sort!
+    if @user.nil?
+       if current_user.admin?
+        flash[:error] = "User doesn't exist!" 
+        redirect_to users_path 
+      else
+        flash[:error] = "You don't have access!" 
+        redirect_to user_path(session[:user_id])
+      end
+
+    elsif current_user.admin?
       @admin = current_user
-      if @user.workouts
+      if @user.workouts && @user
        @workouts = @user.workouts
-       render 'users/show', :locals => {:phases => phases, workouts: @workouts }
+       render 'users/show', :locals => {:phases => @phases, workouts: @workouts }
       end
     else
+      # Prevents clients to see other client's data###################
+      unless session[:user_id] == @user.id
+        flash[:error] = "You don't have access!"
+        redirect_to user_path(session[:user_id])
+      return
+      end
+      #################################################
       @workouts = current_user.workouts
-      # binding.pry
-      render 'users/show', :locals => {phases: phases, workouts: @workouts }
+      render 'users/show', :locals => {phases: @phases, workouts: @workouts }
     end
   end
+
 
   def new
   end
@@ -72,7 +88,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
   def phases(user)
