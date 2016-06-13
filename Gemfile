@@ -20,6 +20,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara'
+
 end
 
 group :development do
