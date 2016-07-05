@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     @phases.sort!
     if @user.nil?
        if current_user.admin?
-        flash[:error] = "User doesn't exist!" 
-        redirect_to users_path 
+        flash[:error] = "User doesn't exist!"
+        redirect_to users_path
       else
-        flash[:error] = "You don't have access!" 
+        flash[:error] = "You don't have access!"
         redirect_to user_path(session[:user_id])
       end
 
@@ -27,13 +27,12 @@ class UsersController < ApplicationController
        render 'users/show', :locals => {:phases => @phases, workouts: @workouts }
       end
     else
-      # Prevents clients to see other client's data###################
+      #################### Prevents clients to see other client's data###################
       unless session[:user_id] == @user.id
         flash[:error] = "You don't have access!"
         redirect_to user_path(session[:user_id])
       return
       end
-      #################################################
       @workouts = current_user.workouts
       render 'users/show', :locals => {phases: @phases, workouts: @workouts }
     end
