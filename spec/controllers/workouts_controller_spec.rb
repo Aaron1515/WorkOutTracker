@@ -8,6 +8,11 @@ RSpec.describe WorkoutsController, type: :controller do
 
 
   describe 'Get #index' do
+    it "renders the :index template" do
+      # user = User.create(name: 'jon', email:'asdfasfd@asdfasf.com', password: 'password', admin: true)
+      # get :new, use_route: 'user_workouts', :user_id => user.id
+      # expect(response).to render :index
+    end
   end
 
   describe 'Get #show' do
@@ -18,10 +23,7 @@ RSpec.describe WorkoutsController, type: :controller do
     end
 
 
-    # need to complete test for this
     it 'responds with 200' do
-      # get user_workout_path(user_id: @user.id, id: @workout.id)
-      # expect(response).to be true
     end
   end
 
@@ -29,6 +31,18 @@ RSpec.describe WorkoutsController, type: :controller do
 
 
   describe 'Get #new' do
+
+
+    it "assigns a new Workout to @workout" do
+      user = User.create(name: 'jon', email:'test@test.com', password: 'password', admin: true)
+      get :new, use_route: 'new_user_workout', :user_id => user.id
+      expect(response).to render_template :new
+
+    end
+
+    it "renders the :new _form.html.erb" do
+    end
+
   end
 
   describe 'Get #edit' do
