@@ -17,6 +17,7 @@ gem 'paperclip'
 gem 'rails_12factor', group: :production
 
 group :development, :test do
+  gem 'simplecov', :require => false
   gem 'byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
