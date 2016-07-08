@@ -24,6 +24,7 @@ RSpec.describe WorkoutsController, type: :controller do
 
 
     it 'responds with 200' do
+
     end
   end
 
@@ -35,7 +36,7 @@ RSpec.describe WorkoutsController, type: :controller do
 
     it "assigns a new Workout to @workout" do
       user = User.create(name: 'jon', email:'test@test.com', password: 'password', admin: true)
-      get :new, use_route: 'new_user_workout', :user_id => user.id
+      get :new, use_route: new_user_workout_path(user), :user_id => user.id
       expect(response).to render_template :new
 
     end
@@ -46,6 +47,16 @@ RSpec.describe WorkoutsController, type: :controller do
   end
 
   describe 'Get #edit' do
+
+    it "renders the :edit template" do
+      current_user = User.create(name: 'jon', email:'test@test.com', password: 'password', admin: true)
+      workout = Workout.create(name: 'bench press', reps: 8, sets: 4, weight: '50', completed: true, phase: 1, rest: 30, user_id: current_user.id, day: 1,note: 'note')
+
+      get :edit, use_route: 'edit_user_workout', :user_id => current_user.id, :id => workout.id
+
+      expect(response).to render_template :edit
+    end
+
   end
 
   describe 'Get #update' do
