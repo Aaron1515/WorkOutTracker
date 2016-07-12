@@ -1,28 +1,36 @@
-== README
+#Workout Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An application that allows trainers to issues out workout to their clients and is able to be track completenes on workouts.
 
-Things you may want to cover:
+Clients is able to view all their workouts issued by the trainer and complete the workouts.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##OUR FF - Future Features
+* D3.js visual view for client's measurements
+* Measurements view and control
+* Switch login from Bcrypt to Devise
+* Add Facebook Oauth
+* Add Webdriver testing
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+##Current technology
+
+* Rails framework
+  * Ruby
+  * JavaScript
+  * JQuery
+  * Postgres
+  * Bcrypt
+* Front End
+  * JavaScript
+  * HTML5
+  * CSS
+  * Bootstrap
+* Testing
+  * Rspec
+  * SimpleCov
+  * Capybara
+  * Factory Girl
+
+
+
+
