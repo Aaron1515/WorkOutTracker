@@ -11,6 +11,10 @@ Clients is able to view all their workouts issued by the trainer and complete th
 * Add Facebook Oauth
 * Add Webdriver testing
 
+##OUR FF - Future Features that could be added quickly
+* Twilio's API to send out messages when workout is issuesed
+
+
 
 ##Current technology
 
