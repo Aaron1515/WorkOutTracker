@@ -79,10 +79,6 @@ function graphOutWeight(){
       .attr('fill', 'none');
 }
 
-
-
-
-
 function graphOutBodyFat(){
   // Make ajax call to find out all the measurement for weight
 
