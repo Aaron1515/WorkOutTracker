@@ -36,7 +36,7 @@ var showGoals = function(event){
 var markComplete = function(event){
   event.preventDefault();
   console.log(this);
-  var that = $(this);
+  // var that = $(this);
   var userId = $(this).attr('name');
   var id = $(this).attr('id');
   var url = '/users/' + userId + '/workouts/' + id
