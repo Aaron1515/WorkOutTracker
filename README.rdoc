@@ -15,8 +15,6 @@ Clients is able to view all their workouts issued by the trainer and complete th
 ##OUR FF - Future Features that could be added quickly
 * Twilio's API to send out messages when workout is issuesed
 
-
-
 ##Current technology
 
 * Rails framework
@@ -43,7 +41,3 @@ Clients is able to view all their workouts issued by the trainer and complete th
   * MacBook
   * 30 Gallon of coffee
   * TV to make noise in the background
-
-
-
-
