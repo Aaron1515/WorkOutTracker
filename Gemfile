@@ -16,10 +16,13 @@ gem 'faker'
 gem 'paperclip'
 
 group :development, :test do
+  gem 'simplecov', :require => false
   gem 'byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'simplecov'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
 end
 
 group :development do
